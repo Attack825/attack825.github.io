@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="wifi快捷登录插件 # 目的为了减少鼠标操作直接弹出浏览器登录页面
+https://p.njupt.edu.cn/a79.htm?wlanuserip=10.136.160.206&amp;wlanacip=10.255.253.118&amp;wlanacname=SPL-BRAS-SR8806-X ToDo # 支持学校账号、电信账号和移动账号。 提供登录失败的警告。 提示用户在设置中添加账号和密码。 添加测试功能。 实现打包功能，避免客户端需要安装 Python。 南邮校园网认证原理 # portal原理 https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8
+如何设置电脑的DNS服务器以及常用的DNS服务器 HTTP Referer 教程 - 阮一峰的网络日志 什么是DHCP？为什么要用DHCP？ - 华为 与DHCP服务器交互，获取局域网地址 我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&quot;http://10.10.244.11/&#34;，即定位到&#34;https://p.njupt.edu.cn/&#34;。 所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。 与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求 介入设备和RADIUS服务器交互，进行计费操作。 最终返回Portal认证结果，例如 dr1003({&ldquo;result&rdquo;:1,&ldquo;msg&rdquo;:&ldquo;Portal协议认证成功！&rdquo;});
+解决DHCP固定ip问题 # 无线局域网适配器 WLAN: 连接特定的 DNS 后缀 . . . . . . . : 描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card 物理地址.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/post/flow-launcher%E6%8F%92%E4%BB%B6/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="flow launcher插件">
+  <meta property="og:description" content="wifi快捷登录插件 # 目的为了减少鼠标操作直接弹出浏览器登录页面
+https://p.njupt.edu.cn/a79.htm?wlanuserip=10.136.160.206&amp;wlanacip=10.255.253.118&amp;wlanacname=SPL-BRAS-SR8806-X ToDo # 支持学校账号、电信账号和移动账号。 提供登录失败的警告。 提示用户在设置中添加账号和密码。 添加测试功能。 实现打包功能，避免客户端需要安装 Python。 南邮校园网认证原理 # portal原理 https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8
+如何设置电脑的DNS服务器以及常用的DNS服务器 HTTP Referer 教程 - 阮一峰的网络日志 什么是DHCP？为什么要用DHCP？ - 华为 与DHCP服务器交互，获取局域网地址 我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&#34;http://10.10.244.11/&#34;，即定位到&#34;https://p.njupt.edu.cn/&#34;。 所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。 与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求 介入设备和RADIUS服务器交互，进行计费操作。 最终返回Portal认证结果，例如 dr1003({“result”:1,“msg”:“Portal协议认证成功！”});
+解决DHCP固定ip问题 # 无线局域网适配器 WLAN: 连接特定的 DNS 后缀 . . . . . . . : 描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card 物理地址.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-05-30T13:13:31+08:00">
+    <meta property="article:modified_time" content="2024-05-30T13:13:31+08:00">
+<title>flow launcher插件 | My New Hugo Site</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="canonical" href="http://localhost:1313/post/flow-launcher%E6%8F%92%E4%BB%B6/">
+<link rel="stylesheet" href="/book.min.484e3cdc2f6e660df5c808d0eaf99198acde922db9728bc590485956e896548a.css" integrity="sha256-SE483C9uZg31yAjQ6vmRmKzeki25covFkEhZVuiWVIo=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.005bfb8bc54de61948dfdbae6d2768c557b9abf9f9a056461d65d5a2e34f2fd8.js" integrity="sha256-AFv7i8VN5hlI39uubSdoxVe5q/n5oFZGHWXVouNPL9g=" crossorigin="anonymous"></script>
+
+  
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>My New Hugo Site</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>flow launcher插件</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#wifi快捷登录插件">wifi快捷登录插件</a>
+      <ul>
+        <li><a href="#todo">ToDo</a></li>
+        <li><a href="#南邮校园网认证原理">南邮校园网认证原理</a></li>
+        <li><a href="#使用命令行连接wifi">使用命令行连接wifi</a></li>
+      </ul>
+    </li>
+    <li><a href="#flow-launcher">Flow Launcher</a>
+      <ul>
+        <li><a href="#cicd">CI/CD</a></li>
+        <li><a href="#json-rpc">JSON-RPC</a></li>
+        <li><a href="#flow-启动器-api">Flow 启动器 API</a></li>
+        <li><a href="#读取配置settings">读取配置settings</a></li>
+      </ul>
+    </li>
+    <li><a href="#vscode快捷打开插件">vscode快捷打开插件</a>
+      <ul>
+        <li><a href="#todo1">ToDo1</a></li>
+        <li><a href="#python学习">python学习</a></li>
+        <li><a href="#项目编写">项目编写</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="wifi快捷登录插件">
+  wifi快捷登录插件
+  <a class="anchor" href="#wifi%e5%bf%ab%e6%8d%b7%e7%99%bb%e5%bd%95%e6%8f%92%e4%bb%b6">#</a>
+</h2>
+<p>目的为了减少鼠标操作直接弹出浏览器登录页面</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>https:<span style="color:#f92672">//</span>p<span style="color:#f92672">.</span>njupt<span style="color:#f92672">.</span>edu<span style="color:#f92672">.</span>cn<span style="color:#f92672">/</span>a79<span style="color:#f92672">.</span>htm<span style="color:#960050;background-color:#1e0010">?</span>wlanuserip<span style="color:#f92672">=</span><span style="color:#ae81ff">10.136.160.206</span><span style="color:#f92672">&amp;</span>wlanacip<span style="color:#f92672">=</span><span style="color:#ae81ff">10.255.253.118</span><span style="color:#f92672">&amp;</span>wlanacname<span style="color:#f92672">=</span>SPL<span style="color:#f92672">-</span>BRAS<span style="color:#f92672">-</span>SR8806<span style="color:#f92672">-</span>X
+</span></span></code></pre></div><h3 id="todo">
+  ToDo
+  <a class="anchor" href="#todo">#</a>
+</h3>
+<ol>
+<li>支持学校账号、电信账号和移动账号。</li>
+<li>提供登录失败的警告。</li>
+<li>提示用户在设置中添加账号和密码。</li>
+<li>添加测试功能。</li>
+<li>实现打包功能，避免客户端需要安装 Python。</li>
+</ol>
+<h3 id="南邮校园网认证原理">
+  南邮校园网认证原理
+  <a class="anchor" href="#%e5%8d%97%e9%82%ae%e6%a0%a1%e5%9b%ad%e7%bd%91%e8%ae%a4%e8%af%81%e5%8e%9f%e7%90%86">#</a>
+</h3>
+<blockquote>
+<p>portal原理
+<a href="https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8">https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8</a></p>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/305914414">如何设置电脑的DNS服务器以及常用的DNS服务器</a>
+<a href="https://www.ruanyifeng.com/blog/2019/06/http-referer.html">HTTP Referer 教程 - 阮一峰的网络日志</a>
+<a href="https://info.support.huawei.com/info-finder/encyclopedia/zh/DHCP.html">什么是DHCP？为什么要用DHCP？ - 华为</a>
+<img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1716283665637-5e841f3b-da25-4c81-ab67-65900f41ee88.png#averageHue=%23f1f1f1&amp;clientId=u5c01b596-0300-4&amp;from=paste&amp;id=u7be73d39&amp;originHeight=290&amp;originWidth=313&amp;originalType=url&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=u4103eda1-0e8b-4d05-8ec2-172e869271d&amp;title=" alt="" /></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1716180675416-ee154d19-ee9e-4adc-94ff-cbab7782520f.png#averageHue=%23fbfaf9&amp;clientId=ub6d55539-eecd-4&amp;from=paste&amp;height=435&amp;id=u1169ba1b&amp;originHeight=544&amp;originWidth=492&amp;originalType=url&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=ue8f6f354-a7ec-4177-b4b0-1e9e08b023f&amp;title=&amp;width=393" alt="" /></p>
+<ol>
+<li>与DHCP服务器交互，获取局域网地址</li>
+<li>我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&quot;<a href="http://10.10.244.11/%22%ef%bc%8c%e5%8d%b3%e5%ae%9a%e4%bd%8d%e5%88%b0%22https://p.njupt.edu.cn/%22%e3%80%82">http://10.10.244.11/"，即定位到"https://p.njupt.edu.cn/"。</a></li>
+<li>所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。</li>
+<li>与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求</li>
+<li>介入设备和RADIUS服务器交互，进行计费操作。</li>
+<li>最终返回Portal认证结果，例如</li>
+</ol>
+<blockquote>
+<p>dr1003({&ldquo;result&rdquo;:1,&ldquo;msg&rdquo;:&ldquo;Portal协议认证成功！&rdquo;});</p>
+</blockquote>
+<h4 id="解决dhcp固定ip问题">
+  解决DHCP固定ip问题
+  <a class="anchor" href="#%e8%a7%a3%e5%86%b3dhcp%e5%9b%ba%e5%ae%9aip%e9%97%ae%e9%a2%98">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>无线局域网适配器 WLAN:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   连接特定的 DNS 后缀 . . . . . . . :
+</span></span><span style="display:flex;"><span>   描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card
+</span></span><span style="display:flex;"><span>   物理地址. . . . . . . . . . . . . : F8-89-D2-7C-BE-8F
+</span></span><span style="display:flex;"><span>   DHCP 已启用 . . . . . . . . . . . : 是
+</span></span><span style="display:flex;"><span>   自动配置已启用. . . . . . . . . . : 是
+</span></span><span style="display:flex;"><span>   本地链接 IPv6 地址. . . . . . . . : fe80::7854:268d:12c6:e8ed%23(首选)
+</span></span><span style="display:flex;"><span>   IPv4 地址 . . . . . . . . . . . . : 10.136.198.133(首选)
+</span></span><span style="display:flex;"><span>   子网掩码  . . . . . . . . . . . . : 255.255.128.0
+</span></span><span style="display:flex;"><span>   获得租约的时间  . . . . . . . . . : 2024年5月21日 17:22:21
+</span></span><span style="display:flex;"><span>   租约过期的时间  . . . . . . . . . : 2024年5月21日 18:03:36
+</span></span><span style="display:flex;"><span>   默认网关. . . . . . . . . . . . . : 10.136.255.254
+</span></span><span style="display:flex;"><span>   DHCP 服务器 . . . . . . . . . . . : 10.136.255.254
+</span></span><span style="display:flex;"><span>   DHCPv6 IAID . . . . . . . . . . . : 217614802
+</span></span><span style="display:flex;"><span>   DHCPv6 客户端 DUID  . . . . . . . : 00-01-00-01-29-93-C8-A3-90-2E-16-6A-AA-56
+</span></span><span style="display:flex;"><span>   DNS 服务器  . . . . . . . . . . . : 10.10.240.10
+</span></span><span style="display:flex;"><span>                                       10.10.240.8
+</span></span><span style="display:flex;"><span>   TCPIP 上的 NetBIOS  . . . . . . . : 已启用
+</span></span></code></pre></div><p><a href="https://www.zhihu.com/question/447540614">请问校园网内电脑可以设置静态IP地址吗？该如何设置？ - 知乎</a></p>
+<blockquote>
+<p>现在的网络设备都有防地址私设特性，就是专门为了防止有人将自己网卡设置为静态IP地址的。这种功能的原理就是利用你的电脑是否会发出DHCP报文（自动获取地址就是通过DHCP实现的），交换机会监听DHCP报文，并记录你电脑申请到的IP地址，并进行IP+网卡MAC的绑定。只有这个IP的这个MAC的才允许通信。
+你现在把网卡改为固定IP地址，就不会发出DHCP报文，那交换机就监听不到，就不会进行绑定。所以会认为你发出的报文是非法报文，当然就无法通信了。
+这个防地址私设特性，是为了防止有人用固定IP地址，和其他人的动态IP地址产生冲突，出现问题，到时候查问题就很难查了。
+所以建议你还是乖乖的用动态IP地址吧，不要给网管人员添麻烦，如果有啥特殊需求，找网管沟通下，给你专门分配一个静态IP地址。
+<strong>天津大学固定ip是收费的，50/年，校园</strong>网固定IP 我校校园网采用动态IP地址分配策略，当设备连接到校园网时，会获得一个动态分配的IP地址。 在某些使用场景下，您可能需要使用一个固定的校园网IP地址，例如网络共享打印机、大型仪器设备、专用网络终端等。 信网中心可以根据您的需求，为您分配固定的校园网IP地址。
+南邮信息化文档
+<a href="https://xxb.njupt.edu.cn/_upload/article/files/eb/d5/aeb437a84d66a533135961fa8849/e9c3b23e-4a0a-434c-989b-65ff2009ef8a.pdf">https://xxb.njupt.edu.cn/_upload/article/files/eb/d5/aeb437a84d66a533135961fa8849/e9c3b23e-4a0a-434c-989b-65ff2009ef8a.pdf</a></p>
+</blockquote>
+<h4 id="接口">
+  接口
+  <a class="anchor" href="#%e6%8e%a5%e5%8f%a3">#</a>
+</h4>
+<p>portal服务器：p.njupt.edu.cn:80
+接入设备：p.njupt.edu.cn:802</p>
+<ul>
+<li>
+<p>loadConfig</p>
+<blockquote>
+<p>/eportal/portal/page/loadConfig?callback=dr1001&amp;program_index=&amp;wlan_vlan_id=0&amp;wlan_user_ip=MTAuMTM2LjE2MC4yMDY%3D&amp;wlan_user_ipv6=&amp;wlan_user_ssid=&amp;wlan_user_areaid=&amp;wlan_ac_ip=&amp;wlan_ap_mac=000000000000&amp;gw_id=000000000000&amp;jsVersion=4.X&amp;v=10414&amp;lang=zh</p>
+</blockquote>
+</li>
+<li>
+<p>online_list</p>
+<blockquote>
+<p>/eportal/portal/online_list?callback=dr1002&amp;user_account=&amp;user_password=&amp;wlan_user_mac=000000000000&amp;wlan_user_ip=176726222&amp;curr_user_ip=176726222&amp;jsVersion=4.X&amp;v=4182&amp;lang=zh</p>
+</blockquote>
+</li>
+<li>
+<p>login</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://p.njupt.edu.cn:802/eportal/portal/login?callback=dr1003&amp;login_method=1&amp;user_account=%2C0%2CB21090519%40njxy&amp;user_password=Xwj20021114.&amp;wlan_user_ip=10.136.198.133&amp;wlan_user_ipv6=&amp;wlan_user_mac=000000000000&amp;wlan_ac_ip=&amp;wlan_ac_name=&amp;jsVersion=4.1.3&amp;terminal_type=1&amp;lang=zh-cn&amp;v=4028&amp;lang=zh">https://p.njupt.edu.cn:802/eportal/portal/login?callback=dr1003&login_method=1&user_account=%2C0%2CB21090519%40njxy&user_password=Xwj20021114.&wlan_user_ip=10.136.198.133&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=4028&lang=zh</a></p>
+</blockquote>
+<ul>
+<li>logout</li>
+</ul>
+<blockquote>
+<p>/eportal/portal/logout?callback=dr1003&amp;login_method=1&amp;user_account=drcom&amp;user_password=123&amp;ac_logout=1&amp;register_mode=1&amp;wlan_user_ip=10.136.160.206&amp;wlan_user_ipv6=&amp;wlan_vlan_id=0&amp;wlan_user_mac=000000000000&amp;wlan_ac_ip=&amp;wlan_ac_name=&amp;jsVersion=4.1.3&amp;v=7267&amp;lang=zh</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">login</span>():
+</span></span><span style="display:flex;"><span>    account <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B21090519@njxy&#39;</span>
+</span></span><span style="display:flex;"><span>    password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Xwj20021114.&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://p.njupt.edu.cn:802/eportal/portal/login&#39;</span>
+</span></span><span style="display:flex;"><span>    params <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;callback&#39;</span>: <span style="color:#e6db74">&#39;dr1003&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;login_method&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># &#39;user_account&#39;: &#39;,0,B21090519@njxy&#39;,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_account&#39;</span>: account,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_password&#39;</span>: password,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ip&#39;</span>: <span style="color:#e6db74">&#39;10.136.160.206&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ipv6&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_mac&#39;</span>: <span style="color:#e6db74">&#39;000000000000&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_ip&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_name&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;jsVersion&#39;</span>: <span style="color:#e6db74">&#39;4.1.3&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;terminal_type&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh-cn&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;v&#39;</span>: <span style="color:#e6db74">&#39;4028&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    headers <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;*/*&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, params<span style="color:#f92672">=</span>params, headers<span style="color:#f92672">=</span>headers)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>status_code)
+</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>text)  <span style="color:#75715e"># 如果需要查看返回的内容</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">logout</span>():
+</span></span><span style="display:flex;"><span>    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://p.njupt.edu.cn:802/eportal/portal/logout&#39;</span>
+</span></span><span style="display:flex;"><span>    params <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;callback&#39;</span>: <span style="color:#e6db74">&#39;dr1003&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;login_method&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_account&#39;</span>: <span style="color:#e6db74">&#39;drcom&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_password&#39;</span>: <span style="color:#e6db74">&#39;123&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;ac_logout&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;register_mode&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ip&#39;</span>: <span style="color:#e6db74">&#39;10.136.160.206&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ipv6&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_vlan_id&#39;</span>: <span style="color:#e6db74">&#39;0&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_mac&#39;</span>: <span style="color:#e6db74">&#39;000000000000&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_ip&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_name&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;jsVersion&#39;</span>: <span style="color:#e6db74">&#39;4.1.3&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;v&#39;</span>: <span style="color:#e6db74">&#39;7267&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    headers <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;*/*&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept-Encoding&#39;</span>: <span style="color:#e6db74">&#39;gzip, deflate, br, zstd&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept-Language&#39;</span>: <span style="color:#e6db74">&#39;zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5,en-IE;q=0.4&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Cookie&#39;</span>: <span style="color:#e6db74">&#39;_ga=GA1.1.148507178.1701333449; _ga_J6LT8812GZ=GS1.1.1701333448.1.1.1701334038.0.0.0&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Referer&#39;</span>: <span style="color:#e6db74">&#39;https://p.njupt.edu.cn/&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Dest&#39;</span>: <span style="color:#e6db74">&#39;script&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Mode&#39;</span>: <span style="color:#e6db74">&#39;no-cors&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Site&#39;</span>: <span style="color:#e6db74">&#39;same-site&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 其他可能需要的 header</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, params<span style="color:#f92672">=</span>params, headers<span style="color:#f92672">=</span>headers)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>status_code)
+</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>text)  <span style="color:#75715e"># 如果需要查看返回的内容</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># logout()</span>
+</span></span><span style="display:flex;"><span>    login()
+</span></span></code></pre></div><h3 id="使用命令行连接wifi">
+  使用命令行连接wifi
+  <a class="anchor" href="#%e4%bd%bf%e7%94%a8%e5%91%bd%e4%bb%a4%e8%a1%8c%e8%bf%9e%e6%8e%a5wifi">#</a>
+</h3>
+<p>上面的快捷操作需要获得局域网地址，而DHCP动态分配的局域网地址总是不稳定的，而且获取方法待定，我只能尝试使用命令行连接wifi。</p>
+<p>介绍几个帮助命令，如下，其他的就自己去试试吧</p>
+<blockquote>
+<p>netsh /?
+netsh wlan /?
+netsh wlan connect /?
+查看配置文件
+netsh wlan show profile
+netsh wlan show profile xwj
+连接到无限Wifi网络：
+netsh wlan connect name=PROFILE
+netsh wlan connect ssid=SSID name=PROFILE
+断开网络：
+netsh wlan disconnect</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> netsh wlan show interfaces
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">系统上有</span> <span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">个接口</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">名称</span>                   <span style="color:#f92672">:</span> WLAN
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">说明</span>            <span style="color:#f92672">:</span> MediaTek Wi<span style="color:#f92672">-</span>Fi <span style="color:#ae81ff">6</span> MT7921 Wireless LAN Card
+</span></span><span style="display:flex;"><span>    GUID                   : a5c1eb73<span style="color:#f92672">-</span>b199<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>de2<span style="color:#f92672">-</span>a942<span style="color:#f92672">-</span><span style="color:#ae81ff">694217e96631</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">物理地址</span>       <span style="color:#f92672">:</span> f8:<span style="color:#ae81ff">89</span><span style="color:#f92672">:</span>d2:<span style="color:#ae81ff">7</span>c:be:<span style="color:#ae81ff">8f</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">界面类型</span>         <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">主要</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">状态</span>                  <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">已连接</span>
+</span></span><span style="display:flex;"><span>    SSID                   : xwj
+</span></span><span style="display:flex;"><span>    BSSID                  : <span style="color:#ae81ff">76</span><span style="color:#f92672">:</span>f0:<span style="color:#ae81ff">87</span><span style="color:#f92672">:</span>de:<span style="color:#ae81ff">2</span>a:<span style="color:#ae81ff">85</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">网络类型</span>               <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">结构</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">无线电类型</span>             <span style="color:#f92672">:</span> <span style="color:#ae81ff">802.11</span>n
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">身份验证</span>               <span style="color:#f92672">:</span> WPA2 <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">个人</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">密码</span>                 <span style="color:#f92672">:</span> CCMP
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">连接模式</span>        <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">配置文件</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">频带</span>                   <span style="color:#f92672">:</span> <span style="color:#ae81ff">2.4</span> GHz
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">通道</span>                <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">接收速率</span>(Mbps)         <span style="color:#f92672">:</span> <span style="color:#ae81ff">144.4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">传输速率</span> (Mbps)        <span style="color:#f92672">:</span> <span style="color:#ae81ff">144.4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">信号</span>                   <span style="color:#f92672">:</span> <span style="color:#ae81ff">89</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">配置文件</span>               <span style="color:#f92672">:</span> xwj
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">承载网络状态</span>  <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">不可用</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>    netsh wlan disconnect
+</span></span><span style="display:flex;"><span>    netsh wlan connect name=<span style="color:#e6db74">&#34;xwj&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ((netsh wlan show interfaces) <span style="color:#f92672">-match</span> <span style="color:#e6db74">&#34;xwj&#34;</span>) { <span style="color:#75715e"># 是否连接xwj</span>
+</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 连接校园网</span>
+</span></span><span style="display:flex;"><span>netsh wlan connect name=<span style="color:#e6db74">&#34;NJUPT-CHINANET&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> Test-Connection <span style="color:#ae81ff">127.0</span>.0.1 -Count <span style="color:#ae81ff">1</span> &gt; $null; netsh wlan show interfaces | Select-String <span style="color:#e6db74">&#34;SSID&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    SSID                   <span style="color:#960050;background-color:#1e0010">:</span> xwj
+</span></span><span style="display:flex;"><span>    BSSID                  <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">76</span><span style="color:#960050;background-color:#1e0010">:</span>f0<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">87</span><span style="color:#960050;background-color:#1e0010">:</span>de<span style="color:#960050;background-color:#1e0010">:</span>2a<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">85</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>@netsh wlan show interfaces | find <span style="color:#e6db74">&#34;car-test&#34;</span> &gt; nul &amp;&amp; (netsh wlan disconnect &amp; netsh wlan connect car ) || (netsh wlan disconnect &amp; netsh wlan connect car-test )<span style="color:#960050;background-color:#1e0010">↳</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@ping <span style="color:#ae81ff">127.1</span> &gt; nul &amp; netsh wlan show interfaces | find <span style="color:#e6db74">&#34;SSID&#34;</span> &amp; pause
+</span></span></code></pre></div><h2 id="flow-launcher">
+  Flow Launcher
+  <a class="anchor" href="#flow-launcher">#</a>
+</h2>
+<h3 id="cicd">
+  CI/CD
+  <a class="anchor" href="#cicd">#</a>
+</h3>
+<p>github/workflows
+<a href="https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程 - 阮一峰的网络日志</a>
+<a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions">https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions</a>
+大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。
+很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。
+如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。</p>
+<p>GitHub Actions 有一些自己的术语。
+（1）<strong>workflow</strong> （工作流程）：持续集成一次运行的过程，就是一个 workflow。
+（2）<strong>job</strong> （任务）：一个 workflow 由一个或多个 jobs 构成，含义是一次持续集成的运行，可以完成多个任务。
+（3）<strong>step</strong>（步骤）：每个 job 由多个 step 构成，一步步完成。
+（4）<strong>action</strong> （动作）：每个 step 可以依次执行一个或多个命令（action）。</p>
+<h3 id="json-rpc">
+  JSON-RPC
+  <a class="anchor" href="#json-rpc">#</a>
+</h3>
+<p><a href="https://en.wikipedia.org/wiki/JSON-RPC">JSON-RPC</a> 是用 JSON 编码的远程过程调用协议。
+<a href="https://en.wikipedia.org/wiki/JSON-RPC">https://en.wikipedia.org/wiki/JSON-RPC</a>
+在 Flow Launcher 中，我们使用 JSON-RPC 作为<strong>本地</strong>过程调用协议来绑定 Flow 和其他程序语言（<a href="https://www.flowlauncher.com/docs/#/py-develop-plugins">Python 插件</a>和 <a href="https://www.flowlauncher.com/docs/#/nodejs-develop-plugins">JavaScript/TypeScript 插件</a>）。
+因此，我们需要在 Flow 和 Plugin 之间构建一个<strong>通用的 API</strong>。
+<img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1715324063972-cedfe720-473a-4dac-a396-9525789ef919.png#averageHue=%23020202&amp;clientId=uaa2b1a13-83fe-4&amp;from=paste&amp;id=u4c0f4762&amp;originHeight=389&amp;originWidth=932&amp;originalType=url&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;size=24318&amp;status=done&amp;style=none&amp;taskId=u5e530530-147f-47b4-8e24-683bf1eb33d&amp;title=" alt="image.png" /></p>
+<p>JSON-RPC 是一种远程过程调用（RPC）协议，用于在客户端和服务器之间进行通信。在这个上下文中，JSON-RPC 用于在插件和 Flow Launcher 之间进行通信。当用户在 Flow Launcher 中执行某个操作时，比如发起一个查询，Flow Launcher 将会向插件发送一个 JSON-RPC 请求，插件接收请求并返回相应的结果。</p>
+<blockquote>
+<p>关键在于是Flow Launcher 调用 插件的函数，而插件不能调用客户端的函数</p>
+</blockquote>
+<p>这在这个上下文中，Flow Launcher 是 JSON-RPC 客户端，而插件是 JSON-RPC 服务器端。
+Flow Launcher 作为 JSON-RPC 客户端，负责向插件发送 JSON-RPC 请求，请求执行某些操作，比如执行特定的命令或获取某些信息。
+而插件作为 JSON-RPC 服务器端，接收 Flow Launcher 发送过来的 JSON-RPC 请求，然后解析请求，执行相应的操作，并将执行结果封装成 JSON-RPC 响应返回给 Flow Launcher。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsonRPCRequest</span>(TypedDict):
+</span></span><span style="display:flex;"><span>    method: str
+</span></span><span style="display:flex;"><span>    parameters: list
+</span></span><span style="display:flex;"><span>    settings: NotRequired[dict[Any, Any]]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JsonRPCClient</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">send</span>(self, data: Mapping) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        json<span style="color:#f92672">.</span>dump(data, sys<span style="color:#f92672">.</span>stdout)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">recieve</span>(self) <span style="color:#f92672">-&gt;</span> JsonRPCRequest:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 这行代码的意思是将命令行中传入的第一个参数解析为 JSON 格式的字符串，</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 然后将其转换为 Python 对象，并将其作为函数的返回值。</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>loads(sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> (<span style="color:#a6e22e">IndexError</span>, json<span style="color:#f92672">.</span>JSONDecodeError):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;method&#39;</span>: <span style="color:#e6db74">&#39;query&#39;</span>, <span style="color:#e6db74">&#39;parameters&#39;</span>: [<span style="color:#e6db74">&#39;&#39;</span>]}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># -*- coding: utf-8 -*-</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> inspect
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> json <span style="color:#f92672">import</span> loads, dumps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FlowLauncher</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Flow.Launcher python plugin base
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># defalut jsonrpc</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>rpc_request <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;method&#39;</span>: <span style="color:#e6db74">&#39;query&#39;</span>, <span style="color:#e6db74">&#39;parameters&#39;</span>: [<span style="color:#e6db74">&#39;&#39;</span>]}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>debugMessage <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(sys<span style="color:#f92672">.</span>argv) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Gets JSON-RPC from Flow Launcher process.</span>
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>rpc_request <span style="color:#f92672">=</span> loads(sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># proxy is not working now</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># self.proxy = self.rpc_request.get(&#34;proxy&#34;, {})</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        request_method_name <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rpc_request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;method&#34;</span>, <span style="color:#e6db74">&#34;query&#34;</span>)
+</span></span><span style="display:flex;"><span>        request_parameters <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rpc_request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;parameters&#34;</span>, [])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        methods <span style="color:#f92672">=</span> inspect<span style="color:#f92672">.</span>getmembers(self, predicate<span style="color:#f92672">=</span>inspect<span style="color:#f92672">.</span>ismethod)
+</span></span><span style="display:flex;"><span>        request_method <span style="color:#f92672">=</span> dict(methods)[request_method_name]
+</span></span><span style="display:flex;"><span>        results <span style="color:#f92672">=</span> request_method(<span style="color:#f92672">*</span>request_parameters)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> request_method_name <span style="color:#f92672">in</span> (<span style="color:#e6db74">&#34;query&#34;</span>, <span style="color:#e6db74">&#34;context_menu&#34;</span>):
+</span></span><span style="display:flex;"><span>            print(dumps({
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;result&#34;</span>: results,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;debugMessage&#34;</span>: self<span style="color:#f92672">.</span>debugMessage
+</span></span><span style="display:flex;"><span>            }))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">query</span>(self, param: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#f92672">-&gt;</span> list:
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        sub class need to override this method
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">context_menu</span>(self, data) <span style="color:#f92672">-&gt;</span> list:
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        optional context menu entries for a result
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">debug</span>(self, msg: str):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        alert msg
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>debugMessage <span style="color:#f92672">=</span> msg
+</span></span></code></pre></div><h4 id="json-rpc-格式">
+  JSON RPC 格式
+  <a class="anchor" href="#json-rpc-%e6%a0%bc%e5%bc%8f">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;Flow Launcher API Name&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;parameters&#34;</span>: []
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="flowlauncherchangequeryhttpswwwflowlaunchercomdocsjson-rpcidflowlauncherchangequery">
+  <a href="https://www.flowlauncher.com/docs/#/json-rpc?id=flowlauncherchangequery">Flow.Launcher.ChangeQuery</a>
+  <a class="anchor" href="#flowlauncherchangequeryhttpswwwflowlaunchercomdocsjson-rpcidflowlauncherchangequery">#</a>
+</h4>
+<ul>
+<li>query字符串</li>
+<li>requery、布尔</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;Flow.Launcher.ChangeQuery&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;parameters&#34;</span>: [<span style="color:#960050;background-color:#1e0010">query</span>, <span style="color:#960050;background-color:#1e0010">requery</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="flowlaunchershellrunhttpswwwflowlaunchercomdocsjson-rpcidflowlaunchershellrun">
+  <a href="https://www.flowlauncher.com/docs/#/json-rpc?id=flowlaunchershellrun">Flow.Launcher.ShellRun</a>
+  <a class="anchor" href="#flowlaunchershellrunhttpswwwflowlaunchercomdocsjson-rpcidflowlaunchershellrun">#</a>
+</h4>
+<ul>
+<li>cmd字符串</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;Flow.Launcher.ShellRun&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;parameters&#34;</span>: [<span style="color:#960050;background-color:#1e0010">cmd</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="flowlaunchershowmsghttpswwwflowlaunchercomdocsjson-rpcidflowlaunchershowmsg">
+  <a href="https://www.flowlauncher.com/docs/#/json-rpc?id=flowlaunchershowmsg">Flow.Launcher.ShowMsg</a>
+  <a class="anchor" href="#flowlaunchershowmsghttpswwwflowlaunchercomdocsjson-rpcidflowlaunchershowmsg">#</a>
+</h4>
+<ul>
+<li>title字符串</li>
+<li>sub_title字符串</li>
+<li>ico_path、字符串（路径）</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;Flow.Launcher.ShowMsg&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;parameters&#34;</span>: [<span style="color:#960050;background-color:#1e0010">title</span>, <span style="color:#960050;background-color:#1e0010">sub_title</span>, <span style="color:#960050;background-color:#1e0010">ico_path</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="flow-启动器-api">
+  Flow 启动器 API
+  <a class="anchor" href="#flow-%e5%90%af%e5%8a%a8%e5%99%a8-api">#</a>
+</h3>
+<ul>
+<li><strong>API 列表</strong>：提供了一系列的 API 接口，用于与 Flow Launcher 进行交互。</li>
+<li><strong>API 功能</strong>：
+<ul>
+<li><code>Flow.Launcher.ChangeQuery</code>：更改启动器的查询字符串。</li>
+<li><code>Flow.Launcher.RestartApp</code>：重新启动 Flow Launcher。</li>
+<li><code>Flow.Launcher.SaveAppAllSettings</code>：保存所有 Flow Launcher 的设置。</li>
+<li><code>Flow.Launcher.CheckForNewUpdate</code>：检查 Flow Launcher 的更新。</li>
+<li><code>Flow.Launcher.ShellRun</code>：执行 shell 命令。</li>
+<li><code>Flow.Launcher.CloseApp</code>：关闭 Flow Launcher。</li>
+<li><code>Flow.Launcher.HideApp</code>：隐藏 Flow Launcher。</li>
+<li><code>Flow.Launcher.ShowApp</code>：显示 Flow Launcher。</li>
+<li><code>Flow.Launcher.ShowMsg</code>：显示一个消息框。</li>
+<li><code>Flow.Launcher.GetTranslation</code>：获取当前语言的翻译。</li>
+<li><code>Flow.Launcher.OpenSettingDialog</code>：打开设置对话框。</li>
+<li><code>Flow.Launcher.GetAllPlugins</code>：获取所有已加载的插件。</li>
+<li><code>Flow.Launcher.StartLoadingBar</code>：开始加载动画。</li>
+<li><code>Flow.Launcher.StopLoadingBar</code>：停止加载动画。</li>
+<li><code>Flow.Launcher.ReloadAllPluginData</code>：重新加载所有插件数据。</li>
+</ul>
+</li>
+</ul>
+<p>这段代码定义了一个名为 <code>FlowLauncher</code> 的基类，用于创建 Flow Launcher 插件。插件开发者需要继承这个基类，并实现其中的 <code>query</code> 和 <code>context_menu</code> 方法来定义插件的行为。</p>
+<h4 id="flow-launcher类">
+  Flow Launcher类
+  <a class="anchor" href="#flow-launcher%e7%b1%bb">#</a>
+</h4>
+<ol>
+<li><code>__init__</code> 方法：初始化方法，在创建 <code>FlowLauncher</code> 类的实例时被调用。它首先设置了默认的 JSON-RPC 请求，然后检查是否有命令行参数传入，如果有，则将其解析为 JSON-RPC 请求。</li>
+<li><code>query</code> 方法：这是一个需要子类实现的方法。它接收一个字符串参数 <code>param</code>，并返回一个列表作为查询结果。插件开发者需要根据传入的参数进行相应的查询操作，并返回查询结果。</li>
+<li><code>context_menu</code> 方法：这是一个可选的方法，用于定义查询结果的上下文菜单。它接收一个参数 <code>data</code>，并返回一个列表作为上下文菜单的条目。如果插件开发者希望为查询结果添加一些额外的操作选项，可以实现这个方法。</li>
+<li><code>debug</code> 方法：用于输出调试信息。它接收一个字符串参数 <code>msg</code>，并将其保存在 <code>debugMessage</code> 属性中，以便在响应中返回调试信息。</li>
+</ol>
+<p>插件开发者只需要继承 <code>FlowLauncher</code> 类，并在子类中实现 <code>query</code> 和 <code>context_menu</code> 方法来定义自己的插件行为。然后，他们可以将这个子类作为他们自己的插件，并将其与 Flow Launcher 集成。</p>
+<h3 id="读取配置settings">
+  读取配置settings
+  <a class="anchor" href="#%e8%af%bb%e5%8f%96%e9%85%8d%e7%bd%aesettings">#</a>
+</h3>
+<h2 id="vscode快捷打开插件">
+  vscode快捷打开插件
+  <a class="anchor" href="#vscode%e5%bf%ab%e6%8d%b7%e6%89%93%e5%bc%80%e6%8f%92%e4%bb%b6">#</a>
+</h2>
+<p>实现目标vscode打开everything的目录</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>D:\VSCode\bin\code
+</span></span><span style="display:flex;"><span>D:\VSCode\bin\code C:\Users\xuwenjie\Desktop\WorkPlace\Algorithm\Algorithm
+</span></span><span style="display:flex;"><span>D:\VSCode\bin\code D:\Project\PythonProject\alicebot
+</span></span></code></pre></div><p>大致命令为vscode Algorithm</p>
+<h3 id="todo1">
+  ToDo1
+  <a class="anchor" href="#todo1">#</a>
+</h3>
+<p>多ide
+读取flow客户端配置
+设置缓存
+打包，无感使用
+测试
+query 带参数，搜索匹配缓存或者内存中的name</p>
+<h3 id="python学习">
+  python学习
+  <a class="anchor" href="#python%e5%ad%a6%e4%b9%a0">#</a>
+</h3>
+<h4 id="python文件路径">
+  python文件路径
+  <a class="anchor" href="#python%e6%96%87%e4%bb%b6%e8%b7%af%e5%be%84">#</a>
+</h4>
+<p><a href="https://blog.csdn.net/weixin_47542175/article/details/113237354">python文件地址（文件路径）怎么写_python地址怎么写-CSDN博客</a></p>
+<h3 id="项目编写">
+  项目编写
+  <a class="anchor" href="#%e9%a1%b9%e7%9b%ae%e7%bc%96%e5%86%99">#</a>
+</h3>
+<h4 id="代码思路">
+  代码思路
+  <a class="anchor" href="#%e4%bb%a3%e7%a0%81%e6%80%9d%e8%b7%af">#</a>
+</h4>
+<p><strong>插件用于获取用户在Visual Studio Code中打开过的项目列表。</strong>
+<strong>步骤：</strong></p>
+<ol>
+<li>首先检查用户是否启用了Visual Studio Code的下拉框，未启用则返回空数组。这个是由于参考插件为多功能打开选项，所以需要看vscode是否被选择</li>
+<li>然后读取Visual Studio Code的缓存数据，如果缓存存在则直接返回缓存数据。$HOME/Library/Application Support/Code/User/globalStorage/storage.json</li>
+<li>若缓存不存在，则读取本地存储中的数据，并将数据转换为项目列表格式后返回。</li>
+<li>同时将转换后的项目列表缓存起来。</li>
+</ol>
+<h4 id="pulgin-settings">
+  pulgin settings
+  <a class="anchor" href="#pulgin-settings">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>body:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> type: textBlock
+</span></span><span style="display:flex;"><span>    attributes:
+</span></span><span style="display:flex;"><span>      description: Welcome to the settings page <span style="color:#66d9ef">for</span> my plugin. Here you can configure the plugin to your liking.
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> type: input
+</span></span><span style="display:flex;"><span>    attributes:
+</span></span><span style="display:flex;"><span>      name: userName
+</span></span><span style="display:flex;"><span>      label: How should I call you<span style="color:#f92672">?</span>
+</span></span><span style="display:flex;"><span>      defaultValue: the user
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> type: textarea
+</span></span><span style="display:flex;"><span>    attributes:
+</span></span><span style="display:flex;"><span>      name: prependResult
+</span></span><span style="display:flex;"><span>      label: Text to prepend to result output
+</span></span><span style="display:flex;"><span>      description: <span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        This text will be added to the beginning of the result output. For example, <span style="color:#66d9ef">if</span> you set <span style="color:#66d9ef">this</span> to 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;The result is: &#34;</span>, and the result is <span style="color:#e6db74">&#34;42&#34;</span>, the output will be <span style="color:#e6db74">&#34;The result is: 42&#34;</span>. 
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> type: dropdown
+</span></span><span style="display:flex;"><span>    attributes:
+</span></span><span style="display:flex;"><span>      name: programmingLanguage
+</span></span><span style="display:flex;"><span>      label: Programming language to prefer <span style="color:#66d9ef">for</span> answers
+</span></span><span style="display:flex;"><span>      defaultValue: TypeScript
+</span></span><span style="display:flex;"><span>      options:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> JavaScript
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> TypeScript
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> Python
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> <span style="color:#e6db74">&#34;C#&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> type: checkbox
+</span></span><span style="display:flex;"><span>    attributes:
+</span></span><span style="display:flex;"><span>      name: preferShorterAnswers
+</span></span><span style="display:flex;"><span>      label: Prefer shorter answers
+</span></span><span style="display:flex;"><span>      description: If checked, the plugin will <span style="color:#66d9ef">try</span> to give answer much shorter than the usual ones.
+</span></span><span style="display:flex;"><span>      defaultValue: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><p><img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1715326631116-ae75e57c-375f-4206-ab0f-e6025457ca23.png#averageHue=%23f9f8f7&amp;clientId=uaa2b1a13-83fe-4&amp;from=paste&amp;height=340&amp;id=u62826d9f&amp;originHeight=468&amp;originWidth=1171&amp;originalType=binary&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;size=54122&amp;status=done&amp;style=none&amp;taskId=ucba82fe8-ad3f-43bb-941a-d5169e7e1df&amp;title=&amp;width=851.6363636363636" alt="image.png" /></p>
+<p>官方提供了免费的setting template.yaml生成器
+<a href="https://www.flowlauncher.com/docs/#/json-rpc-visual-settingstemplate-editor">Flow Launcher - Documentation</a></p>
+<h4 id="插件测试">
+  插件测试
+  <a class="anchor" href="#%e6%8f%92%e4%bb%b6%e6%b5%8b%e8%af%95">#</a>
+</h4>
+<p>成功构建插件后，可以通过将输出文件移动到 Flow Launcher 的目录中来对其进行本地测试，该目录可通过 Flow Launcher 中的命令访问。FlowLauncher\Pluginsuserdata另类因此，如果您正在构建 .Net（C# 或 F#）插件，则可以让 IDE 直接将工件构建到该位置（请记住不要在 Git 中检查此构建输出路径）。</p>
+<p><a href="https://www.flowlauncher.com/docs/#/testing?id=detail-steps"><strong>详细步骤</strong></a></p>
+<ol>
+<li>在 Flow Launcher 中执行userdata</li>
+<li>导航到文件夹。Plugins</li>
+<li>将与指定相同的现有插件从文件夹中移出（<em><strong>如果多个插件<strong><strong>具有相同的插件 ID</strong></strong>，则不会加载它们中的任何一个</strong></em>）。Plugin ID plugin.json</li>
+<li>将新构建的插件文件夹复制并粘贴到此文件夹中。</li>
+<li>执行以重新加载新插件。</li>
+</ol>
+<blockquote>
+<p>Restart Flow Launcher</p>
+</blockquote>
+<p>提示：.Net 插件（例如 C# 和 F#）每次进行更改时都需要您重新启动流程并构建新的工件以重新加载插件，但 Python 和 JS/TS 插件您可以直接编辑插件。</p>
+<h4 id="hello-world">
+  hello world
+  <a class="anchor" href="#hello-world">#</a>
+</h4>
+<p>python支持直接编辑插件，将编写的代码复制过去即刻</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1715328082889-9dc56055-1d61-4a52-bee4-e24e58c2269f.png#averageHue=%23363736&amp;clientId=uaa2b1a13-83fe-4&amp;from=paste&amp;height=116&amp;id=ue6fde6bd&amp;originHeight=160&amp;originWidth=725&amp;originalType=binary&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;size=25540&amp;status=done&amp;style=none&amp;taskId=ufb1f925d-72f1-4c58-b5ce-dbb5a3f99bc&amp;title=&amp;width=527.2727272727273" alt="image.png" />
+<img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1715327891680-c9f8eaba-0dc4-4a6c-8b27-cd4363078949.png#averageHue=%23838382&amp;clientId=uaa2b1a13-83fe-4&amp;from=paste&amp;height=132&amp;id=u93095d15&amp;originHeight=181&amp;originWidth=751&amp;originalType=binary&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;size=26492&amp;status=done&amp;style=none&amp;taskId=u44a348a7-7eda-4199-a49e-72686b4949f&amp;title=&amp;width=546.1818181818181" alt="image.png" /></p>
+<h4 id="vscode-storage">
+  vscode storage
+  <a class="anchor" href="#vscode-storage">#</a>
+</h4>
+<p>这段代码是一个 JSON 格式的配置文件，其中包含了一些关于用户界面配置和工作区的信息。让我帮你解析一下这些内容：</p>
+<ol>
+<li>&ldquo;telemetry.machineId&rdquo;: &ldquo;4fd368a50cab7edf1f493950ad5427e90b9ac12fca180ac55f52481aaf7b6541&rdquo; - 这是一个用于识别用户设备的 ID。</li>
+<li>&ldquo;backupWorkspaces&rdquo;: - 这是关于备份工作区的信息，包括了工作区列表和文件夹列表。</li>
+<li>&ldquo;windowControlHeight&rdquo;: 35 - 窗口控制的高度。</li>
+<li>&ldquo;theme&rdquo;: &ldquo;vs-dark&rdquo; - 当前使用的主题。</li>
+<li>&ldquo;themeBackground&rdquo;: &ldquo;#1f1f1f&rdquo; - 主题的背景颜色。</li>
+<li>&ldquo;windowSplash&rdquo;: - 窗口启动时的配置信息，包括了缩放级别、基本主题、颜色信息和布局信息。</li>
+<li>&ldquo;windowsState&rdquo;: - 窗口状态信息，包括了最后一个活动窗口和已打开窗口的列表，每个窗口包括了文件夹路径、备份路径和界面状态。</li>
+<li>&ldquo;userDataProfilesMigration&rdquo;: true - 是否启用用户数据配置文件的迁移。</li>
+<li>&ldquo;profileAssociations&rdquo;: - 配置文件关联信息，包括了工作空间和默认配置文件之间的映射关系。</li>
+</ol>
+<p>这些是该 JSON 文件中的主要字段和内容。</p>
+<blockquote>
+<p>艹，[&ldquo;lastKnownMenubarData&rdquo;]被从storage中删除了，尼玛
+<a href="https://github.com/microsoft/vscode/issues/138491">https://github.com/microsoft/vscode/issues/138491</a></p>
+</blockquote>
+<p>vscode将不支持工作空间的长期存储，只支持临时存储，关机消失
+可以使用缓存将信息保存在flow launcher中，长期不访问就会消失</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;backupWorkspaces&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;workspaces&#34;</span>: [],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;folders&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;folderUri&#34;</span>: <span style="color:#e6db74">&#34;file:///d%3A/Project/PythonProject/Flow.Launcher.Plugin.VscodeOpen&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;folderUri&#34;</span>: <span style="color:#e6db74">&#34;file:///d%3A/Project/TypescriptProject/open-history-item&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;folderUri&#34;</span>: <span style="color:#e6db74">&#34;file:///c%3A/Users/xuwenjie/AppData/Local/FlowLauncher/app-1.18.0/UserData/Plugins/Hello%20World%20Python-1.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;folderUri&#34;</span>: <span style="color:#e6db74">&#34;file:///c%3A/Users/xuwenjie/AppData/Local/FlowLauncher/app-1.18.0/UserData/Plugins/VscodeOpen&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;emptyWindows&#34;</span>: []
+</span></span><span style="display:flex;"><span>}<span style="color:#960050;background-color:#1e0010">,</span>
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#wifi快捷登录插件">wifi快捷登录插件</a>
+      <ul>
+        <li><a href="#todo">ToDo</a></li>
+        <li><a href="#南邮校园网认证原理">南邮校园网认证原理</a></li>
+        <li><a href="#使用命令行连接wifi">使用命令行连接wifi</a></li>
+      </ul>
+    </li>
+    <li><a href="#flow-launcher">Flow Launcher</a>
+      <ul>
+        <li><a href="#cicd">CI/CD</a></li>
+        <li><a href="#json-rpc">JSON-RPC</a></li>
+        <li><a href="#flow-启动器-api">Flow 启动器 API</a></li>
+        <li><a href="#读取配置settings">读取配置settings</a></li>
+      </ul>
+    </li>
+    <li><a href="#vscode快捷打开插件">vscode快捷打开插件</a>
+      <ul>
+        <li><a href="#todo1">ToDo1</a></li>
+        <li><a href="#python学习">python学习</a></li>
+        <li><a href="#项目编写">项目编写</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
