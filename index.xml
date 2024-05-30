@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://attack825.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>XWJ Hugo Site</title>
+    <link>https://Attack825.github.io/</link>
+    <description>Recent content on XWJ Hugo Site</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://attack825.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 May 2024 20:10:59 +0800</lastBuildDate>
+    <atom:link href="https://Attack825.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://Attack825.github.io/about/</link>
+      <pubDate>Thu, 30 May 2024 20:10:59 +0800</pubDate>
+      <guid>https://Attack825.github.io/about/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>First</title>
+      <link>https://Attack825.github.io/post/first/</link>
+      <pubDate>Thu, 30 May 2024 13:13:31 +0800</pubDate>
+      <guid>https://Attack825.github.io/post/first/</guid>
+      <description>Hello World!</description>
+    </item>
+    <item>
+      <title>flow launcher插件</title>
+      <link>https://Attack825.github.io/post/flow-launcher%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Thu, 30 May 2024 13:13:31 +0800</pubDate>
+      <guid>https://Attack825.github.io/post/flow-launcher%E6%8F%92%E4%BB%B6/</guid>
+      <description>wifi快捷登录插件 # 目的为了减少鼠标操作直接弹出浏览器登录页面&#xA;https://p.njupt.edu.cn/a79.htm?wlanuserip=10.136.160.206&amp;amp;wlanacip=10.255.253.118&amp;amp;wlanacname=SPL-BRAS-SR8806-X ToDo # 支持学校账号、电信账号和移动账号。 提供登录失败的警告。 提示用户在设置中添加账号和密码。 添加测试功能。 实现打包功能，避免客户端需要安装 Python。 南邮校园网认证原理 # portal原理 https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8&#xA;如何设置电脑的DNS服务器以及常用的DNS服务器 HTTP Referer 教程 - 阮一峰的网络日志 什么是DHCP？为什么要用DHCP？ - 华为 与DHCP服务器交互，获取局域网地址 我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&amp;quot;http://10.10.244.11/&#34;，即定位到&#34;https://p.njupt.edu.cn/&#34;。 所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。 与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求 介入设备和RADIUS服务器交互，进行计费操作。 最终返回Portal认证结果，例如 dr1003({&amp;ldquo;result&amp;rdquo;:1,&amp;ldquo;msg&amp;rdquo;:&amp;ldquo;Portal协议认证成功！&amp;rdquo;});&#xA;解决DHCP固定ip问题 # 无线局域网适配器 WLAN: 连接特定的 DNS 后缀 . . . . . . . : 描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card 物理地址.</description>
+    </item>
   </channel>
 </rss>
