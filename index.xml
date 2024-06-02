@@ -6,8 +6,15 @@
     <description>Recent content on XWJ Hugo Site</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 May 2024 20:10:59 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 02 Jun 2024 14:14:58 +0800</lastBuildDate>
     <atom:link href="https://attack825.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我每天训练到吐，他们却说这是天赋！—尤塞恩•博尔</title>
+      <link>https://attack825.github.io/post/%E6%88%91%E6%AF%8F%E5%A4%A9%E8%AE%AD%E7%BB%83%E5%88%B0%E5%90%90%E4%BB%96%E4%BB%AC%E5%8D%B4%E8%AF%B4%E8%BF%99%E6%98%AF%E5%A4%A9%E8%B5%8B%E5%B0%A4%E5%A1%9E%E6%81%A9%E5%8D%9A%E5%B0%94/</link>
+      <pubDate>Sun, 02 Jun 2024 14:14:58 +0800</pubDate>
+      <guid>https://attack825.github.io/post/%E6%88%91%E6%AF%8F%E5%A4%A9%E8%AE%AD%E7%BB%83%E5%88%B0%E5%90%90%E4%BB%96%E4%BB%AC%E5%8D%B4%E8%AF%B4%E8%BF%99%E6%98%AF%E5%A4%A9%E8%B5%8B%E5%B0%A4%E5%A1%9E%E6%81%A9%E5%8D%9A%E5%B0%94/</guid>
+      <description>天赋和技能 # 今天做了一套六级卷子，看着第一篇阅读理解，讲的是许多人将绘画当成有天赋人的独有的能力，而不是一种技能。这让我想起了尤塞恩·博尔特的这句话。&#xA;我每天训练到吐，他们却说这是天赋！—尤塞恩·博尔特&#xA;不知道这种错误观念是什么时候开始的，但是这影响了很多人，包括以前的我，我很早就把画画的活动丢失了，还记得小学黑板报我大多参与了，当时画的是卡通画。&#xA;来到大学，不再偏安一隅，绘画建模大佬，项目代码大佬，魂系游戏大佬，以前竟然会犯蠢的感慨他们天赋真好，却从来没想过自己是否能做到，或许我没有自信花费那么多时间在一个不确定的事情上，没自信，懦弱胆小。也从来没有什么确定的事情能让我把握。&#xA;人生的意义 # 许三多，当史今在车库怒骂许三多：你许三多根本没有退路了，今天必须得抡锤，不抡不行！为了你，我史今跟全连的人都掰了，再这样下去，自己就得走人了。许三多根本不知道自己为什么来当兵。也不知道，自己该做什么，才算是有意义的事。当许三多知道自己的表现能决定班长的去留时，他开始努力了，他不想班长离开，他不想离开这个集体，不想再次离开大家。&#xA;有意义的事就是好好活着，好好活着就是做有意义的事。 ——许三多&#xA;所以，世界上是否有天赋，与我无关。我就是我，我不是为了与他人比较天赋而活在这个世界上的。我活着是为了人格、家庭、兴趣。我为了找工作而努力，为了团队项目而努力，为了双力臂而努力。人生总要努力几次，否则，在铺好的路还未走完之前就被推翻，那我的生命意义就被否定了。&#xA;健身是最能看出努力变化的一项活动，他不像文化内涵一样内敛，不像绘画一样高不可攀，不像代码一样晦涩难懂。只要坚持，三个月就能变化巨大，往后的路是坚持还是终结，就随缘吧，立一个flag，今年练出双力臂。</description>
+    </item>
     <item>
       <title>About</title>
       <link>https://attack825.github.io/about/</link>
@@ -16,18 +23,18 @@
       <description></description>
     </item>
     <item>
-      <title>First</title>
-      <link>https://attack825.github.io/post/first/</link>
-      <pubDate>Thu, 30 May 2024 13:13:31 +0800</pubDate>
-      <guid>https://attack825.github.io/post/first/</guid>
-      <description>Hello World!</description>
-    </item>
-    <item>
       <title>flow launcher插件</title>
       <link>https://attack825.github.io/post/flow-launcher%E6%8F%92%E4%BB%B6/</link>
       <pubDate>Thu, 30 May 2024 13:13:31 +0800</pubDate>
       <guid>https://attack825.github.io/post/flow-launcher%E6%8F%92%E4%BB%B6/</guid>
-      <description>wifi快捷登录插件 # 目的为了减少鼠标操作直接弹出浏览器登录页面&#xA;https://p.njupt.edu.cn/a79.htm?wlanuserip=10.136.160.206&amp;amp;wlanacip=10.255.253.118&amp;amp;wlanacname=SPL-BRAS-SR8806-X ToDo # 支持学校账号、电信账号和移动账号。 提供登录失败的警告。 提示用户在设置中添加账号和密码。 添加测试功能。 实现打包功能，避免客户端需要安装 Python。 南邮校园网认证原理 # portal原理 https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8&#xA;如何设置电脑的DNS服务器以及常用的DNS服务器 HTTP Referer 教程 - 阮一峰的网络日志 什么是DHCP？为什么要用DHCP？ - 华为 与DHCP服务器交互，获取局域网地址 我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&amp;quot;http://10.10.244.11/&#34;，即定位到&#34;https://p.njupt.edu.cn/&#34;。 所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。 与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求 介入设备和RADIUS服务器交互，进行计费操作。 最终返回Portal认证结果，例如 dr1003({&amp;ldquo;result&amp;rdquo;:1,&amp;ldquo;msg&amp;rdquo;:&amp;ldquo;Portal协议认证成功！&amp;rdquo;});&#xA;解决DHCP固定ip问题 # 无线局域网适配器 WLAN: 连接特定的 DNS 后缀 . . . . . . . : 描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card 物理地址.</description>
+      <description>Flow Launcher # CI/CD # github/workflows GitHub Actions 入门教程 - 阮一峰的网络日志 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions 大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。 很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。 如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。&#xA;GitHub Actions 有一些自己的术语。 （1）workflow （工作流程）：持续集成一次运行的过程，就是一个 workflow。 （2）job （任务）：一个 workflow 由一个或多个 jobs 构成，含义是一次持续集成的运行，可以完成多个任务。 （3）step（步骤）：每个 job 由多个 step 构成，一步步完成。 （4）action （动作）：每个 step 可以依次执行一个或多个命令（action）。&#xA;JSON-RPC # JSON-RPC 是用 JSON 编码的远程过程调用协议。 https://en.wikipedia.org/wiki/JSON-RPC 在 Flow Launcher 中，我们使用 JSON-RPC 作为本地过程调用协议来绑定 Flow 和其他程序语言（Python 插件和 JavaScript/TypeScript 插件）。 因此，我们需要在 Flow 和 Plugin 之间构建一个通用的 API。 JSON-RPC 是一种远程过程调用（RPC）协议，用于在客户端和服务器之间进行通信。在这个上下文中，JSON-RPC 用于在插件和 Flow Launcher 之间进行通信。当用户在 Flow Launcher 中执行某个操作时，比如发起一个查询，Flow Launcher 将会向插件发送一个 JSON-RPC 请求，插件接收请求并返回相应的结果。</description>
+    </item>
+    <item>
+      <title>开启个人博客之旅</title>
+      <link>https://attack825.github.io/post/%E5%BC%80%E5%90%AF%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E6%97%85/</link>
+      <pubDate>Thu, 30 May 2024 13:13:31 +0800</pubDate>
+      <guid>https://attack825.github.io/post/%E5%BC%80%E5%90%AF%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E6%97%85/</guid>
+      <description>开启个人博客之旅 # 玩过很多博客系统，从最早的wordpress到现在的hexo，但是都没有坚持下来，这次我打算用hugo来搭建一个个人博客，希望能够坚持下去。这个主题很不错，我很喜欢。这是第一篇用hugo的静态博客，希望能够坚持下去。</description>
     </item>
   </channel>
 </rss>

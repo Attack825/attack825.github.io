@@ -3,19 +3,17 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="wifi快捷登录插件 # 目的为了减少鼠标操作直接弹出浏览器登录页面
-https://p.njupt.edu.cn/a79.htm?wlanuserip=10.136.160.206&amp;wlanacip=10.255.253.118&amp;wlanacname=SPL-BRAS-SR8806-X ToDo # 支持学校账号、电信账号和移动账号。 提供登录失败的警告。 提示用户在设置中添加账号和密码。 添加测试功能。 实现打包功能，避免客户端需要安装 Python。 南邮校园网认证原理 # portal原理 https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8
-如何设置电脑的DNS服务器以及常用的DNS服务器 HTTP Referer 教程 - 阮一峰的网络日志 什么是DHCP？为什么要用DHCP？ - 华为 与DHCP服务器交互，获取局域网地址 我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&quot;http://10.10.244.11/&#34;，即定位到&#34;https://p.njupt.edu.cn/&#34;。 所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。 与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求 介入设备和RADIUS服务器交互，进行计费操作。 最终返回Portal认证结果，例如 dr1003({&ldquo;result&rdquo;:1,&ldquo;msg&rdquo;:&ldquo;Portal协议认证成功！&rdquo;});
-解决DHCP固定ip问题 # 无线局域网适配器 WLAN: 连接特定的 DNS 后缀 . . . . . . . : 描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card 物理地址.">
+<meta name="description" content="Flow Launcher # CI/CD # github/workflows GitHub Actions 入门教程 - 阮一峰的网络日志 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions 大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。 很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。 如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。
+GitHub Actions 有一些自己的术语。 （1）workflow （工作流程）：持续集成一次运行的过程，就是一个 workflow。 （2）job （任务）：一个 workflow 由一个或多个 jobs 构成，含义是一次持续集成的运行，可以完成多个任务。 （3）step（步骤）：每个 job 由多个 step 构成，一步步完成。 （4）action （动作）：每个 step 可以依次执行一个或多个命令（action）。
+JSON-RPC # JSON-RPC 是用 JSON 编码的远程过程调用协议。 https://en.wikipedia.org/wiki/JSON-RPC 在 Flow Launcher 中，我们使用 JSON-RPC 作为本地过程调用协议来绑定 Flow 和其他程序语言（Python 插件和 JavaScript/TypeScript 插件）。 因此，我们需要在 Flow 和 Plugin 之间构建一个通用的 API。 JSON-RPC 是一种远程过程调用（RPC）协议，用于在客户端和服务器之间进行通信。在这个上下文中，JSON-RPC 用于在插件和 Flow Launcher 之间进行通信。当用户在 Flow Launcher 中执行某个操作时，比如发起一个查询，Flow Launcher 将会向插件发送一个 JSON-RPC 请求，插件接收请求并返回相应的结果。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://attack825.github.io/post/flow-launcher%E6%8F%92%E4%BB%B6/">
   <meta property="og:site_name" content="XWJ Hugo Site">
   <meta property="og:title" content="flow launcher插件">
-  <meta property="og:description" content="wifi快捷登录插件 # 目的为了减少鼠标操作直接弹出浏览器登录页面
-https://p.njupt.edu.cn/a79.htm?wlanuserip=10.136.160.206&amp;wlanacip=10.255.253.118&amp;wlanacname=SPL-BRAS-SR8806-X ToDo # 支持学校账号、电信账号和移动账号。 提供登录失败的警告。 提示用户在设置中添加账号和密码。 添加测试功能。 实现打包功能，避免客户端需要安装 Python。 南邮校园网认证原理 # portal原理 https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8
-如何设置电脑的DNS服务器以及常用的DNS服务器 HTTP Referer 教程 - 阮一峰的网络日志 什么是DHCP？为什么要用DHCP？ - 华为 与DHCP服务器交互，获取局域网地址 我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&#34;http://10.10.244.11/&#34;，即定位到&#34;https://p.njupt.edu.cn/&#34;。 所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。 与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求 介入设备和RADIUS服务器交互，进行计费操作。 最终返回Portal认证结果，例如 dr1003({“result”:1,“msg”:“Portal协议认证成功！”});
-解决DHCP固定ip问题 # 无线局域网适配器 WLAN: 连接特定的 DNS 后缀 . . . . . . . : 描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card 物理地址.">
+  <meta property="og:description" content="Flow Launcher # CI/CD # github/workflows GitHub Actions 入门教程 - 阮一峰的网络日志 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions 大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。 很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。 如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。
+GitHub Actions 有一些自己的术语。 （1）workflow （工作流程）：持续集成一次运行的过程，就是一个 workflow。 （2）job （任务）：一个 workflow 由一个或多个 jobs 构成，含义是一次持续集成的运行，可以完成多个任务。 （3）step（步骤）：每个 job 由多个 step 构成，一步步完成。 （4）action （动作）：每个 step 可以依次执行一个或多个命令（action）。
+JSON-RPC # JSON-RPC 是用 JSON 编码的远程过程调用协议。 https://en.wikipedia.org/wiki/JSON-RPC 在 Flow Launcher 中，我们使用 JSON-RPC 作为本地过程调用协议来绑定 Flow 和其他程序语言（Python 插件和 JavaScript/TypeScript 插件）。 因此，我们需要在 Flow 和 Plugin 之间构建一个通用的 API。 JSON-RPC 是一种远程过程调用（RPC）协议，用于在客户端和服务器之间进行通信。在这个上下文中，JSON-RPC 用于在插件和 Flow Launcher 之间进行通信。当用户在 Flow Launcher 中执行某个操作时，比如发起一个查询，Flow Launcher 将会向插件发送一个 JSON-RPC 请求，插件接收请求并返回相应的结果。">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -27,7 +25,7 @@ https://p.njupt.edu.cn/a79.htm?wlanuserip=10.136.160.206&amp;wlanacip=10.255.253
 <link rel="canonical" href="https://attack825.github.io/post/flow-launcher%E6%8F%92%E4%BB%B6/">
 <link rel="stylesheet" href="/book.min.484e3cdc2f6e660df5c808d0eaf99198acde922db9728bc590485956e896548a.css" integrity="sha256-SE483C9uZg31yAjQ6vmRmKzeki25covFkEhZVuiWVIo=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.005bfb8bc54de61948dfdbae6d2768c557b9abf9f9a056461d65d5a2e34f2fd8.js" integrity="sha256-AFv7i8VN5hlI39uubSdoxVe5q/n5oFZGHWXVouNPL9g=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.b0ec93c9719dc1a632db25999a4684081c415be75694e9ae82fdb5faaf968fbb.js" integrity="sha256-sOyTyXGdwaYy2yWZmkaECBxBW&#43;dWlOmugv21&#43;q&#43;Wj7s=" crossorigin="anonymous"></script>
 
   
 
@@ -122,13 +120,6 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#wifi快捷登录插件">wifi快捷登录插件</a>
-      <ul>
-        <li><a href="#todo">ToDo</a></li>
-        <li><a href="#南邮校园网认证原理">南邮校园网认证原理</a></li>
-        <li><a href="#使用命令行连接wifi">使用命令行连接wifi</a></li>
-      </ul>
-    </li>
     <li><a href="#flow-launcher">Flow Launcher</a>
       <ul>
         <li><a href="#cicd">CI/CD</a></li>
@@ -137,10 +128,16 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#读取配置settings">读取配置settings</a></li>
       </ul>
     </li>
-    <li><a href="#vscode快捷打开插件">vscode快捷打开插件</a>
+    <li><a href="#wifi快捷登录插件">wifi快捷登录插件</a>
       <ul>
         <li><a href="#todo1">ToDo1</a></li>
-        <li><a href="#python学习">python学习</a></li>
+        <li><a href="#南邮校园网认证原理">南邮校园网认证原理</a></li>
+        <li><a href="#使用命令行连接wifi">使用命令行连接wifi</a></li>
+      </ul>
+    </li>
+    <li><a href="#vscode快捷打开插件">vscode快捷打开插件</a>
+      <ul>
+        <li><a href="#todo2">ToDo2</a></li>
         <li><a href="#项目编写">项目编写</a></li>
       </ul>
     </li>
@@ -156,251 +153,7 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h2 id="wifi快捷登录插件">
-  wifi快捷登录插件
-  <a class="anchor" href="#wifi%e5%bf%ab%e6%8d%b7%e7%99%bb%e5%bd%95%e6%8f%92%e4%bb%b6">#</a>
-</h2>
-<p>目的为了减少鼠标操作直接弹出浏览器登录页面</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>https:<span style="color:#f92672">//</span>p<span style="color:#f92672">.</span>njupt<span style="color:#f92672">.</span>edu<span style="color:#f92672">.</span>cn<span style="color:#f92672">/</span>a79<span style="color:#f92672">.</span>htm<span style="color:#960050;background-color:#1e0010">?</span>wlanuserip<span style="color:#f92672">=</span><span style="color:#ae81ff">10.136.160.206</span><span style="color:#f92672">&amp;</span>wlanacip<span style="color:#f92672">=</span><span style="color:#ae81ff">10.255.253.118</span><span style="color:#f92672">&amp;</span>wlanacname<span style="color:#f92672">=</span>SPL<span style="color:#f92672">-</span>BRAS<span style="color:#f92672">-</span>SR8806<span style="color:#f92672">-</span>X
-</span></span></code></pre></div><h3 id="todo">
-  ToDo
-  <a class="anchor" href="#todo">#</a>
-</h3>
-<ol>
-<li>支持学校账号、电信账号和移动账号。</li>
-<li>提供登录失败的警告。</li>
-<li>提示用户在设置中添加账号和密码。</li>
-<li>添加测试功能。</li>
-<li>实现打包功能，避免客户端需要安装 Python。</li>
-</ol>
-<h3 id="南邮校园网认证原理">
-  南邮校园网认证原理
-  <a class="anchor" href="#%e5%8d%97%e9%82%ae%e6%a0%a1%e5%9b%ad%e7%bd%91%e8%ae%a4%e8%af%81%e5%8e%9f%e7%90%86">#</a>
-</h3>
-<blockquote>
-<p>portal原理
-<a href="https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8">https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8</a></p>
-</blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/305914414">如何设置电脑的DNS服务器以及常用的DNS服务器</a>
-<a href="https://www.ruanyifeng.com/blog/2019/06/http-referer.html">HTTP Referer 教程 - 阮一峰的网络日志</a>
-<a href="https://info.support.huawei.com/info-finder/encyclopedia/zh/DHCP.html">什么是DHCP？为什么要用DHCP？ - 华为</a>
-<img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1716283665637-5e841f3b-da25-4c81-ab67-65900f41ee88.png#averageHue=%23f1f1f1&amp;clientId=u5c01b596-0300-4&amp;from=paste&amp;id=u7be73d39&amp;originHeight=290&amp;originWidth=313&amp;originalType=url&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=u4103eda1-0e8b-4d05-8ec2-172e869271d&amp;title=" alt="" /></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1716180675416-ee154d19-ee9e-4adc-94ff-cbab7782520f.png#averageHue=%23fbfaf9&amp;clientId=ub6d55539-eecd-4&amp;from=paste&amp;height=435&amp;id=u1169ba1b&amp;originHeight=544&amp;originWidth=492&amp;originalType=url&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=ue8f6f354-a7ec-4177-b4b0-1e9e08b023f&amp;title=&amp;width=393" alt="" /></p>
-<ol>
-<li>与DHCP服务器交互，获取局域网地址</li>
-<li>我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&quot;<a href="http://10.10.244.11/%22%ef%bc%8c%e5%8d%b3%e5%ae%9a%e4%bd%8d%e5%88%b0%22https://p.njupt.edu.cn/%22%e3%80%82">http://10.10.244.11/"，即定位到"https://p.njupt.edu.cn/"。</a></li>
-<li>所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。</li>
-<li>与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求</li>
-<li>介入设备和RADIUS服务器交互，进行计费操作。</li>
-<li>最终返回Portal认证结果，例如</li>
-</ol>
-<blockquote>
-<p>dr1003({&ldquo;result&rdquo;:1,&ldquo;msg&rdquo;:&ldquo;Portal协议认证成功！&rdquo;});</p>
-</blockquote>
-<h4 id="解决dhcp固定ip问题">
-  解决DHCP固定ip问题
-  <a class="anchor" href="#%e8%a7%a3%e5%86%b3dhcp%e5%9b%ba%e5%ae%9aip%e9%97%ae%e9%a2%98">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>无线局域网适配器 WLAN:
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>   连接特定的 DNS 后缀 . . . . . . . :
-</span></span><span style="display:flex;"><span>   描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card
-</span></span><span style="display:flex;"><span>   物理地址. . . . . . . . . . . . . : F8-89-D2-7C-BE-8F
-</span></span><span style="display:flex;"><span>   DHCP 已启用 . . . . . . . . . . . : 是
-</span></span><span style="display:flex;"><span>   自动配置已启用. . . . . . . . . . : 是
-</span></span><span style="display:flex;"><span>   本地链接 IPv6 地址. . . . . . . . : fe80::7854:268d:12c6:e8ed%23(首选)
-</span></span><span style="display:flex;"><span>   IPv4 地址 . . . . . . . . . . . . : 10.136.198.133(首选)
-</span></span><span style="display:flex;"><span>   子网掩码  . . . . . . . . . . . . : 255.255.128.0
-</span></span><span style="display:flex;"><span>   获得租约的时间  . . . . . . . . . : 2024年5月21日 17:22:21
-</span></span><span style="display:flex;"><span>   租约过期的时间  . . . . . . . . . : 2024年5月21日 18:03:36
-</span></span><span style="display:flex;"><span>   默认网关. . . . . . . . . . . . . : 10.136.255.254
-</span></span><span style="display:flex;"><span>   DHCP 服务器 . . . . . . . . . . . : 10.136.255.254
-</span></span><span style="display:flex;"><span>   DHCPv6 IAID . . . . . . . . . . . : 217614802
-</span></span><span style="display:flex;"><span>   DHCPv6 客户端 DUID  . . . . . . . : 00-01-00-01-29-93-C8-A3-90-2E-16-6A-AA-56
-</span></span><span style="display:flex;"><span>   DNS 服务器  . . . . . . . . . . . : 10.10.240.10
-</span></span><span style="display:flex;"><span>                                       10.10.240.8
-</span></span><span style="display:flex;"><span>   TCPIP 上的 NetBIOS  . . . . . . . : 已启用
-</span></span></code></pre></div><p><a href="https://www.zhihu.com/question/447540614">请问校园网内电脑可以设置静态IP地址吗？该如何设置？ - 知乎</a></p>
-<blockquote>
-<p>现在的网络设备都有防地址私设特性，就是专门为了防止有人将自己网卡设置为静态IP地址的。这种功能的原理就是利用你的电脑是否会发出DHCP报文（自动获取地址就是通过DHCP实现的），交换机会监听DHCP报文，并记录你电脑申请到的IP地址，并进行IP+网卡MAC的绑定。只有这个IP的这个MAC的才允许通信。
-你现在把网卡改为固定IP地址，就不会发出DHCP报文，那交换机就监听不到，就不会进行绑定。所以会认为你发出的报文是非法报文，当然就无法通信了。
-这个防地址私设特性，是为了防止有人用固定IP地址，和其他人的动态IP地址产生冲突，出现问题，到时候查问题就很难查了。
-所以建议你还是乖乖的用动态IP地址吧，不要给网管人员添麻烦，如果有啥特殊需求，找网管沟通下，给你专门分配一个静态IP地址。
-<strong>天津大学固定ip是收费的，50/年，校园</strong>网固定IP 我校校园网采用动态IP地址分配策略，当设备连接到校园网时，会获得一个动态分配的IP地址。 在某些使用场景下，您可能需要使用一个固定的校园网IP地址，例如网络共享打印机、大型仪器设备、专用网络终端等。 信网中心可以根据您的需求，为您分配固定的校园网IP地址。
-南邮信息化文档
-<a href="https://xxb.njupt.edu.cn/_upload/article/files/eb/d5/aeb437a84d66a533135961fa8849/e9c3b23e-4a0a-434c-989b-65ff2009ef8a.pdf">https://xxb.njupt.edu.cn/_upload/article/files/eb/d5/aeb437a84d66a533135961fa8849/e9c3b23e-4a0a-434c-989b-65ff2009ef8a.pdf</a></p>
-</blockquote>
-<h4 id="接口">
-  接口
-  <a class="anchor" href="#%e6%8e%a5%e5%8f%a3">#</a>
-</h4>
-<p>portal服务器：p.njupt.edu.cn:80
-接入设备：p.njupt.edu.cn:802</p>
-<ul>
-<li>
-<p>loadConfig</p>
-<blockquote>
-<p>/eportal/portal/page/loadConfig?callback=dr1001&amp;program_index=&amp;wlan_vlan_id=0&amp;wlan_user_ip=MTAuMTM2LjE2MC4yMDY%3D&amp;wlan_user_ipv6=&amp;wlan_user_ssid=&amp;wlan_user_areaid=&amp;wlan_ac_ip=&amp;wlan_ap_mac=000000000000&amp;gw_id=000000000000&amp;jsVersion=4.X&amp;v=10414&amp;lang=zh</p>
-</blockquote>
-</li>
-<li>
-<p>online_list</p>
-<blockquote>
-<p>/eportal/portal/online_list?callback=dr1002&amp;user_account=&amp;user_password=&amp;wlan_user_mac=000000000000&amp;wlan_user_ip=176726222&amp;curr_user_ip=176726222&amp;jsVersion=4.X&amp;v=4182&amp;lang=zh</p>
-</blockquote>
-</li>
-<li>
-<p>login</p>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://p.njupt.edu.cn:802/eportal/portal/login?callback=dr1003&amp;login_method=1&amp;user_account=%2C0%2CB21090519%40njxy&amp;user_password=Xwj20021114.&amp;wlan_user_ip=10.136.198.133&amp;wlan_user_ipv6=&amp;wlan_user_mac=000000000000&amp;wlan_ac_ip=&amp;wlan_ac_name=&amp;jsVersion=4.1.3&amp;terminal_type=1&amp;lang=zh-cn&amp;v=4028&amp;lang=zh">https://p.njupt.edu.cn:802/eportal/portal/login?callback=dr1003&login_method=1&user_account=%2C0%2CB21090519%40njxy&user_password=Xwj20021114.&wlan_user_ip=10.136.198.133&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=4028&lang=zh</a></p>
-</blockquote>
-<ul>
-<li>logout</li>
-</ul>
-<blockquote>
-<p>/eportal/portal/logout?callback=dr1003&amp;login_method=1&amp;user_account=drcom&amp;user_password=123&amp;ac_logout=1&amp;register_mode=1&amp;wlan_user_ip=10.136.160.206&amp;wlan_user_ipv6=&amp;wlan_vlan_id=0&amp;wlan_user_mac=000000000000&amp;wlan_ac_ip=&amp;wlan_ac_name=&amp;jsVersion=4.1.3&amp;v=7267&amp;lang=zh</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">login</span>():
-</span></span><span style="display:flex;"><span>    account <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B21090519@njxy&#39;</span>
-</span></span><span style="display:flex;"><span>    password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Xwj20021114.&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://p.njupt.edu.cn:802/eportal/portal/login&#39;</span>
-</span></span><span style="display:flex;"><span>    params <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;callback&#39;</span>: <span style="color:#e6db74">&#39;dr1003&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;login_method&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># &#39;user_account&#39;: &#39;,0,B21090519@njxy&#39;,</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_account&#39;</span>: account,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_password&#39;</span>: password,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ip&#39;</span>: <span style="color:#e6db74">&#39;10.136.160.206&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ipv6&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_mac&#39;</span>: <span style="color:#e6db74">&#39;000000000000&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_ip&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_name&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;jsVersion&#39;</span>: <span style="color:#e6db74">&#39;4.1.3&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;terminal_type&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh-cn&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;v&#39;</span>: <span style="color:#e6db74">&#39;4028&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh&#39;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    headers <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;*/*&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0&#39;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, params<span style="color:#f92672">=</span>params, headers<span style="color:#f92672">=</span>headers)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>status_code)
-</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>text)  <span style="color:#75715e"># 如果需要查看返回的内容</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">logout</span>():
-</span></span><span style="display:flex;"><span>    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://p.njupt.edu.cn:802/eportal/portal/logout&#39;</span>
-</span></span><span style="display:flex;"><span>    params <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;callback&#39;</span>: <span style="color:#e6db74">&#39;dr1003&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;login_method&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_account&#39;</span>: <span style="color:#e6db74">&#39;drcom&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_password&#39;</span>: <span style="color:#e6db74">&#39;123&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;ac_logout&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;register_mode&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ip&#39;</span>: <span style="color:#e6db74">&#39;10.136.160.206&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ipv6&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_vlan_id&#39;</span>: <span style="color:#e6db74">&#39;0&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_mac&#39;</span>: <span style="color:#e6db74">&#39;000000000000&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_ip&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_name&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;jsVersion&#39;</span>: <span style="color:#e6db74">&#39;4.1.3&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;v&#39;</span>: <span style="color:#e6db74">&#39;7267&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh&#39;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    headers <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;*/*&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept-Encoding&#39;</span>: <span style="color:#e6db74">&#39;gzip, deflate, br, zstd&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept-Language&#39;</span>: <span style="color:#e6db74">&#39;zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5,en-IE;q=0.4&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Cookie&#39;</span>: <span style="color:#e6db74">&#39;_ga=GA1.1.148507178.1701333449; _ga_J6LT8812GZ=GS1.1.1701333448.1.1.1701334038.0.0.0&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Referer&#39;</span>: <span style="color:#e6db74">&#39;https://p.njupt.edu.cn/&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Dest&#39;</span>: <span style="color:#e6db74">&#39;script&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Mode&#39;</span>: <span style="color:#e6db74">&#39;no-cors&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Site&#39;</span>: <span style="color:#e6db74">&#39;same-site&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0&#39;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 其他可能需要的 header</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, params<span style="color:#f92672">=</span>params, headers<span style="color:#f92672">=</span>headers)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>status_code)
-</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>text)  <span style="color:#75715e"># 如果需要查看返回的内容</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># logout()</span>
-</span></span><span style="display:flex;"><span>    login()
-</span></span></code></pre></div><h3 id="使用命令行连接wifi">
-  使用命令行连接wifi
-  <a class="anchor" href="#%e4%bd%bf%e7%94%a8%e5%91%bd%e4%bb%a4%e8%a1%8c%e8%bf%9e%e6%8e%a5wifi">#</a>
-</h3>
-<p>上面的快捷操作需要获得局域网地址，而DHCP动态分配的局域网地址总是不稳定的，而且获取方法待定，我只能尝试使用命令行连接wifi。</p>
-<p>介绍几个帮助命令，如下，其他的就自己去试试吧</p>
-<blockquote>
-<p>netsh /?
-netsh wlan /?
-netsh wlan connect /?
-查看配置文件
-netsh wlan show profile
-netsh wlan show profile xwj
-连接到无限Wifi网络：
-netsh wlan connect name=PROFILE
-netsh wlan connect ssid=SSID name=PROFILE
-断开网络：
-netsh wlan disconnect</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> netsh wlan show interfaces
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">系统上有</span> <span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">个接口</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">名称</span>                   <span style="color:#f92672">:</span> WLAN
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">说明</span>            <span style="color:#f92672">:</span> MediaTek Wi<span style="color:#f92672">-</span>Fi <span style="color:#ae81ff">6</span> MT7921 Wireless LAN Card
-</span></span><span style="display:flex;"><span>    GUID                   : a5c1eb73<span style="color:#f92672">-</span>b199<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>de2<span style="color:#f92672">-</span>a942<span style="color:#f92672">-</span><span style="color:#ae81ff">694217e96631</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">物理地址</span>       <span style="color:#f92672">:</span> f8:<span style="color:#ae81ff">89</span><span style="color:#f92672">:</span>d2:<span style="color:#ae81ff">7</span>c:be:<span style="color:#ae81ff">8f</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">界面类型</span>         <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">主要</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">状态</span>                  <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">已连接</span>
-</span></span><span style="display:flex;"><span>    SSID                   : xwj
-</span></span><span style="display:flex;"><span>    BSSID                  : <span style="color:#ae81ff">76</span><span style="color:#f92672">:</span>f0:<span style="color:#ae81ff">87</span><span style="color:#f92672">:</span>de:<span style="color:#ae81ff">2</span>a:<span style="color:#ae81ff">85</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">网络类型</span>               <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">结构</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">无线电类型</span>             <span style="color:#f92672">:</span> <span style="color:#ae81ff">802.11</span>n
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">身份验证</span>               <span style="color:#f92672">:</span> WPA2 <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">个人</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">密码</span>                 <span style="color:#f92672">:</span> CCMP
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">连接模式</span>        <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">配置文件</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">频带</span>                   <span style="color:#f92672">:</span> <span style="color:#ae81ff">2.4</span> GHz
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">通道</span>                <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">接收速率</span>(Mbps)         <span style="color:#f92672">:</span> <span style="color:#ae81ff">144.4</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">传输速率</span> (Mbps)        <span style="color:#f92672">:</span> <span style="color:#ae81ff">144.4</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">信号</span>                   <span style="color:#f92672">:</span> <span style="color:#ae81ff">89</span><span style="color:#f92672">%</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">配置文件</span>               <span style="color:#f92672">:</span> xwj
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">承载网络状态</span>  <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">不可用</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>    netsh wlan disconnect
-</span></span><span style="display:flex;"><span>    netsh wlan connect name=<span style="color:#e6db74">&#34;xwj&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ((netsh wlan show interfaces) <span style="color:#f92672">-match</span> <span style="color:#e6db74">&#34;xwj&#34;</span>) { <span style="color:#75715e"># 是否连接xwj</span>
-</span></span><span style="display:flex;"><span>} 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 连接校园网</span>
-</span></span><span style="display:flex;"><span>netsh wlan connect name=<span style="color:#e6db74">&#34;NJUPT-CHINANET&#34;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> Test-Connection <span style="color:#ae81ff">127.0</span>.0.1 -Count <span style="color:#ae81ff">1</span> &gt; $null; netsh wlan show interfaces | Select-String <span style="color:#e6db74">&#34;SSID&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    SSID                   <span style="color:#960050;background-color:#1e0010">:</span> xwj
-</span></span><span style="display:flex;"><span>    BSSID                  <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">76</span><span style="color:#960050;background-color:#1e0010">:</span>f0<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">87</span><span style="color:#960050;background-color:#1e0010">:</span>de<span style="color:#960050;background-color:#1e0010">:</span>2a<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">85</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>@netsh wlan show interfaces | find <span style="color:#e6db74">&#34;car-test&#34;</span> &gt; nul &amp;&amp; (netsh wlan disconnect &amp; netsh wlan connect car ) || (netsh wlan disconnect &amp; netsh wlan connect car-test )<span style="color:#960050;background-color:#1e0010">↳</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@ping <span style="color:#ae81ff">127.1</span> &gt; nul &amp; netsh wlan show interfaces | find <span style="color:#e6db74">&#34;SSID&#34;</span> &amp; pause
-</span></span></code></pre></div><h2 id="flow-launcher">
+  <article class="markdown book-article"><h2 id="flow-launcher">
   Flow Launcher
   <a class="anchor" href="#flow-launcher">#</a>
 </h2>
@@ -596,7 +349,251 @@ Flow Launcher 作为 JSON-RPC 客户端，负责向插件发送 JSON-RPC 请求�
   读取配置settings
   <a class="anchor" href="#%e8%af%bb%e5%8f%96%e9%85%8d%e7%bd%aesettings">#</a>
 </h3>
-<h2 id="vscode快捷打开插件">
+<h2 id="wifi快捷登录插件">
+  wifi快捷登录插件
+  <a class="anchor" href="#wifi%e5%bf%ab%e6%8d%b7%e7%99%bb%e5%bd%95%e6%8f%92%e4%bb%b6">#</a>
+</h2>
+<p>目的为了减少鼠标操作直接弹出浏览器登录页面</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>https://p.njupt.edu.cn/a79.htm?wlanuserip=10.136.160.206&amp;wlanacip=10.255.253.118&amp;wlanacname=SPL-BRAS-SR8806-X
+</span></span></code></pre></div><h3 id="todo1">
+  ToDo1
+  <a class="anchor" href="#todo1">#</a>
+</h3>
+<ol>
+<li>支持学校账号、电信账号和移动账号。</li>
+<li>提供登录失败的警告。</li>
+<li>提示用户在设置中添加账号和密码。</li>
+<li>添加测试功能。</li>
+<li>实现打包功能，避免客户端需要安装 Python。</li>
+</ol>
+<h3 id="南邮校园网认证原理">
+  南邮校园网认证原理
+  <a class="anchor" href="#%e5%8d%97%e9%82%ae%e6%a0%a1%e5%9b%ad%e7%bd%91%e8%ae%a4%e8%af%81%e5%8e%9f%e7%90%86">#</a>
+</h3>
+<blockquote>
+<p>portal原理
+<a href="https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8">https://support.huawei.com/enterprise/zh/doc/EDOC1100126895/609549d8</a></p>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/305914414">如何设置电脑的DNS服务器以及常用的DNS服务器</a>
+<a href="https://www.ruanyifeng.com/blog/2019/06/http-referer.html">HTTP Referer 教程 - 阮一峰的网络日志</a>
+<a href="https://info.support.huawei.com/info-finder/encyclopedia/zh/DHCP.html">什么是DHCP？为什么要用DHCP？ - 华为</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1716283665637-5e841f3b-da25-4c81-ab67-65900f41ee88.png#averageHue=%23f1f1f1&amp;clientId=u5c01b596-0300-4&amp;from=paste&amp;id=u7be73d39&amp;originHeight=290&amp;originWidth=313&amp;originalType=url&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=u4103eda1-0e8b-4d05-8ec2-172e869271d&amp;title=" alt="DHCP交互" /></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/32662029/1716180675416-ee154d19-ee9e-4adc-94ff-cbab7782520f.png#averageHue=%23fbfaf9&amp;clientId=ub6d55539-eecd-4&amp;from=paste&amp;height=435&amp;id=u1169ba1b&amp;originHeight=544&amp;originWidth=492&amp;originalType=url&amp;ratio=1.375&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=ue8f6f354-a7ec-4177-b4b0-1e9e08b023f&amp;title=&amp;width=393" alt="Portal认证" /></p>
+<ol>
+<li>与DHCP服务器交互，获取局域网地址</li>
+<li>我向学校的接入设备发送HTTP连接请求。接入设备将我重定向至&quot;<a href="http://10.10.244.11/%22%ef%bc%8c%e5%8d%b3%e5%ae%9a%e4%bd%8d%e5%88%b0%22https://p.njupt.edu.cn/%22%e3%80%82">http://10.10.244.11/"，即定位到"https://p.njupt.edu.cn/"。</a></li>
+<li>所以p.njupt.edu.cn应该就是Portal服务器域名，向p.njupt.edu.cn发送GET请求，返回认证页面。</li>
+<li>与Portal服务器交互，发送认证请求，通知客户端向接入设备发送认证请求，然后向接入设备发送认证请求</li>
+<li>介入设备和RADIUS服务器交互，进行计费操作。</li>
+<li>最终返回Portal认证结果，例如</li>
+</ol>
+<blockquote>
+<p>dr1003({&ldquo;result&rdquo;:1,&ldquo;msg&rdquo;:&ldquo;Portal协议认证成功！&rdquo;});</p>
+</blockquote>
+<h4 id="解决dhcp固定ip问题">
+  解决DHCP固定ip问题
+  <a class="anchor" href="#%e8%a7%a3%e5%86%b3dhcp%e5%9b%ba%e5%ae%9aip%e9%97%ae%e9%a2%98">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>无线局域网适配器 WLAN:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   连接特定的 DNS 后缀 . . . . . . . :
+</span></span><span style="display:flex;"><span>   描述. . . . . . . . . . . . . . . : MediaTek Wi-Fi 6 MT7921 Wireless LAN Card
+</span></span><span style="display:flex;"><span>   物理地址. . . . . . . . . . . . . : F8-89-D2-7C-BE-8F
+</span></span><span style="display:flex;"><span>   DHCP 已启用 . . . . . . . . . . . : 是
+</span></span><span style="display:flex;"><span>   自动配置已启用. . . . . . . . . . : 是
+</span></span><span style="display:flex;"><span>   本地链接 IPv6 地址. . . . . . . . : fe80::7854:268d:12c6:e8ed%23(首选)
+</span></span><span style="display:flex;"><span>   IPv4 地址 . . . . . . . . . . . . : 10.136.198.133(首选)
+</span></span><span style="display:flex;"><span>   子网掩码  . . . . . . . . . . . . : 255.255.128.0
+</span></span><span style="display:flex;"><span>   获得租约的时间  . . . . . . . . . : 2024年5月21日 17:22:21
+</span></span><span style="display:flex;"><span>   租约过期的时间  . . . . . . . . . : 2024年5月21日 18:03:36
+</span></span><span style="display:flex;"><span>   默认网关. . . . . . . . . . . . . : 10.136.255.254
+</span></span><span style="display:flex;"><span>   DHCP 服务器 . . . . . . . . . . . : 10.136.255.254
+</span></span><span style="display:flex;"><span>   DHCPv6 IAID . . . . . . . . . . . : 217614802
+</span></span><span style="display:flex;"><span>   DHCPv6 客户端 DUID  . . . . . . . : 00-01-00-01-29-93-C8-A3-90-2E-16-6A-AA-56
+</span></span><span style="display:flex;"><span>   DNS 服务器  . . . . . . . . . . . : 10.10.240.10
+</span></span><span style="display:flex;"><span>                                       10.10.240.8
+</span></span><span style="display:flex;"><span>   TCPIP 上的 NetBIOS  . . . . . . . : 已启用
+</span></span></code></pre></div><p><a href="https://www.zhihu.com/question/447540614">请问校园网内电脑可以设置静态IP地址吗？该如何设置？ - 知乎</a></p>
+<blockquote>
+<p>现在的网络设备都有防地址私设特性，就是专门为了防止有人将自己网卡设置为静态IP地址的。这种功能的原理就是利用你的电脑是否会发出DHCP报文（自动获取地址就是通过DHCP实现的），交换机会监听DHCP报文，并记录你电脑申请到的IP地址，并进行IP+网卡MAC的绑定。只有这个IP的这个MAC的才允许通信。
+你现在把网卡改为固定IP地址，就不会发出DHCP报文，那交换机就监听不到，就不会进行绑定。所以会认为你发出的报文是非法报文，当然就无法通信了。
+这个防地址私设特性，是为了防止有人用固定IP地址，和其他人的动态IP地址产生冲突，出现问题，到时候查问题就很难查了。
+所以建议你还是乖乖的用动态IP地址吧，不要给网管人员添麻烦，如果有啥特殊需求，找网管沟通下，给你专门分配一个静态IP地址。
+<strong>天津大学固定ip是收费的，50/年，校园</strong>网固定IP 我校校园网采用动态IP地址分配策略，当设备连接到校园网时，会获得一个动态分配的IP地址。 在某些使用场景下，您可能需要使用一个固定的校园网IP地址，例如网络共享打印机、大型仪器设备、专用网络终端等。 信网中心可以根据您的需求，为您分配固定的校园网IP地址。
+南邮信息化文档
+<a href="https://xxb.njupt.edu.cn/_upload/article/files/eb/d5/aeb437a84d66a533135961fa8849/e9c3b23e-4a0a-434c-989b-65ff2009ef8a.pdf">https://xxb.njupt.edu.cn/_upload/article/files/eb/d5/aeb437a84d66a533135961fa8849/e9c3b23e-4a0a-434c-989b-65ff2009ef8a.pdf</a></p>
+</blockquote>
+<h4 id="接口">
+  接口
+  <a class="anchor" href="#%e6%8e%a5%e5%8f%a3">#</a>
+</h4>
+<p>portal服务器：p.njupt.edu.cn:80
+接入设备：p.njupt.edu.cn:802</p>
+<ul>
+<li>
+<p>loadConfig</p>
+<blockquote>
+<p>/eportal/portal/page/loadConfig?callback=dr1001&amp;program_index=&amp;wlan_vlan_id=0&amp;wlan_user_ip=MTAuMTM2LjE2MC4yMDY%3D&amp;wlan_user_ipv6=&amp;wlan_user_ssid=&amp;wlan_user_areaid=&amp;wlan_ac_ip=&amp;wlan_ap_mac=000000000000&amp;gw_id=000000000000&amp;jsVersion=4.X&amp;v=10414&amp;lang=zh</p>
+</blockquote>
+</li>
+<li>
+<p>online_list</p>
+<blockquote>
+<p>/eportal/portal/online_list?callback=dr1002&amp;user_account=&amp;user_password=&amp;wlan_user_mac=000000000000&amp;wlan_user_ip=176726222&amp;curr_user_ip=176726222&amp;jsVersion=4.X&amp;v=4182&amp;lang=zh</p>
+</blockquote>
+</li>
+<li>
+<p>login</p>
+<blockquote>
+<p>/eportal/portal/login?callback=dr1003&amp;login_method=1&amp;user_account=%2C0%2CB21090519%40njxy&amp;user_password=Xwj20021114.&amp;wlan_user_ip=10.136.198.133&amp;wlan_user_ipv6=&amp;wlan_user_mac=000000000000&amp;wlan_ac_ip=&amp;wlan_ac_name=&amp;jsVersion=4.1.3&amp;terminal_type=1&amp;lang=zh-cn&amp;v=4028&amp;lang=zh</p>
+</blockquote>
+</li>
+<li>
+<p>logout</p>
+<blockquote>
+<p>/eportal/portal/logout?callback=dr1003&amp;login_method=1&amp;user_account=drcom&amp;user_password=123&amp;ac_logout=1&amp;register_mode=1&amp;wlan_user_ip=10.136.160.206&amp;wlan_user_ipv6=&amp;wlan_vlan_id=0&amp;wlan_user_mac=000000000000&amp;wlan_ac_ip=&amp;wlan_ac_name=&amp;jsVersion=4.1.3&amp;v=7267&amp;lang=zh</p>
+</blockquote>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">login</span>():
+</span></span><span style="display:flex;"><span>    account <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B21090519@njxy&#39;</span>
+</span></span><span style="display:flex;"><span>    password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Xwj20021114.&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://p.njupt.edu.cn:802/eportal/portal/login&#39;</span>
+</span></span><span style="display:flex;"><span>    params <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;callback&#39;</span>: <span style="color:#e6db74">&#39;dr1003&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;login_method&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># &#39;user_account&#39;: &#39;,0,B21090519@njxy&#39;,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_account&#39;</span>: account,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_password&#39;</span>: password,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ip&#39;</span>: <span style="color:#e6db74">&#39;10.136.160.206&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ipv6&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_mac&#39;</span>: <span style="color:#e6db74">&#39;000000000000&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_ip&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_name&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;jsVersion&#39;</span>: <span style="color:#e6db74">&#39;4.1.3&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;terminal_type&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh-cn&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;v&#39;</span>: <span style="color:#e6db74">&#39;4028&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    headers <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;*/*&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, params<span style="color:#f92672">=</span>params, headers<span style="color:#f92672">=</span>headers)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>status_code)
+</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>text)  <span style="color:#75715e"># 如果需要查看返回的内容</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">logout</span>():
+</span></span><span style="display:flex;"><span>    url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://p.njupt.edu.cn:802/eportal/portal/logout&#39;</span>
+</span></span><span style="display:flex;"><span>    params <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;callback&#39;</span>: <span style="color:#e6db74">&#39;dr1003&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;login_method&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_account&#39;</span>: <span style="color:#e6db74">&#39;drcom&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;user_password&#39;</span>: <span style="color:#e6db74">&#39;123&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;ac_logout&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;register_mode&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ip&#39;</span>: <span style="color:#e6db74">&#39;10.136.160.206&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_ipv6&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_vlan_id&#39;</span>: <span style="color:#e6db74">&#39;0&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_user_mac&#39;</span>: <span style="color:#e6db74">&#39;000000000000&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_ip&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;wlan_ac_name&#39;</span>: <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;jsVersion&#39;</span>: <span style="color:#e6db74">&#39;4.1.3&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;v&#39;</span>: <span style="color:#e6db74">&#39;7267&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;lang&#39;</span>: <span style="color:#e6db74">&#39;zh&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    headers <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;*/*&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept-Encoding&#39;</span>: <span style="color:#e6db74">&#39;gzip, deflate, br, zstd&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Accept-Language&#39;</span>: <span style="color:#e6db74">&#39;zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5,en-IE;q=0.4&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Cookie&#39;</span>: <span style="color:#e6db74">&#39;_ga=GA1.1.148507178.1701333449; _ga_J6LT8812GZ=GS1.1.1701333448.1.1.1701334038.0.0.0&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Referer&#39;</span>: <span style="color:#e6db74">&#39;https://p.njupt.edu.cn/&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Dest&#39;</span>: <span style="color:#e6db74">&#39;script&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Mode&#39;</span>: <span style="color:#e6db74">&#39;no-cors&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Sec-Fetch-Site&#39;</span>: <span style="color:#e6db74">&#39;same-site&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 其他可能需要的 header</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, params<span style="color:#f92672">=</span>params, headers<span style="color:#f92672">=</span>headers)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>status_code)
+</span></span><span style="display:flex;"><span>    print(response<span style="color:#f92672">.</span>text)  <span style="color:#75715e"># 如果需要查看返回的内容</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># logout()</span>
+</span></span><span style="display:flex;"><span>    login()
+</span></span></code></pre></div><h3 id="使用命令行连接wifi">
+  使用命令行连接wifi
+  <a class="anchor" href="#%e4%bd%bf%e7%94%a8%e5%91%bd%e4%bb%a4%e8%a1%8c%e8%bf%9e%e6%8e%a5wifi">#</a>
+</h3>
+<p>上面的快捷操作需要获得局域网地址，而DHCP动态分配的局域网地址总是不稳定的，而且获取方法待定，我只能尝试使用命令行连接wifi。</p>
+<p>介绍几个帮助命令，如下，其他的就自己去试试吧</p>
+<blockquote>
+<p>netsh /?
+netsh wlan /?
+netsh wlan connect /?
+查看配置文件
+netsh wlan show profile
+netsh wlan show profile xwj
+连接到无限Wifi网络：
+netsh wlan connect name=PROFILE
+netsh wlan connect ssid=SSID name=PROFILE
+断开网络：
+netsh wlan disconnect</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>netsh wlan show interfaces
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">系统上有</span> <span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">个接口</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">名称</span>                   <span style="color:#f92672">:</span> WLAN
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">说明</span>            <span style="color:#f92672">:</span> MediaTek Wi<span style="color:#f92672">-</span>Fi <span style="color:#ae81ff">6</span> MT7921 Wireless LAN Card
+</span></span><span style="display:flex;"><span>    GUID                   : a5c1eb73<span style="color:#f92672">-</span>b199<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>de2<span style="color:#f92672">-</span>a942<span style="color:#f92672">-</span><span style="color:#ae81ff">694217e96631</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">物理地址</span>       <span style="color:#f92672">:</span> f8:<span style="color:#ae81ff">89</span><span style="color:#f92672">:</span>d2:<span style="color:#ae81ff">7</span>c:be:<span style="color:#ae81ff">8f</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">界面类型</span>         <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">主要</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">状态</span>                  <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">已连接</span>
+</span></span><span style="display:flex;"><span>    SSID                   : xwj
+</span></span><span style="display:flex;"><span>    BSSID                  : <span style="color:#ae81ff">76</span><span style="color:#f92672">:</span>f0:<span style="color:#ae81ff">87</span><span style="color:#f92672">:</span>de:<span style="color:#ae81ff">2</span>a:<span style="color:#ae81ff">85</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">网络类型</span>               <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">结构</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">无线电类型</span>             <span style="color:#f92672">:</span> <span style="color:#ae81ff">802.11</span>n
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">身份验证</span>               <span style="color:#f92672">:</span> WPA2 <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">个人</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">密码</span>                 <span style="color:#f92672">:</span> CCMP
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">连接模式</span>        <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">配置文件</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">频带</span>                   <span style="color:#f92672">:</span> <span style="color:#ae81ff">2.4</span> GHz
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">通道</span>                <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">接收速率</span>(Mbps)         <span style="color:#f92672">:</span> <span style="color:#ae81ff">144.4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">传输速率</span> (Mbps)        <span style="color:#f92672">:</span> <span style="color:#ae81ff">144.4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">信号</span>                   <span style="color:#f92672">:</span> <span style="color:#ae81ff">89</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">配置文件</span>               <span style="color:#f92672">:</span> xwj
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">承载网络状态</span>  <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">不可用</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>    netsh wlan disconnect
+</span></span><span style="display:flex;"><span>    netsh wlan connect name=<span style="color:#e6db74">&#34;xwj&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ((netsh wlan show interfaces) <span style="color:#f92672">-match</span> <span style="color:#e6db74">&#34;xwj&#34;</span>) { <span style="color:#75715e"># 是否连接xwj</span>
+</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 连接校园网</span>
+</span></span><span style="display:flex;"><span>netsh wlan connect name=<span style="color:#e6db74">&#34;NJUPT-CHINANET&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Test-Connection <span style="color:#ae81ff">127.0</span>.0.1 -Count <span style="color:#ae81ff">1</span> &gt; $null; netsh wlan show interfaces | Select-String <span style="color:#e6db74">&#34;SSID&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    SSID                   <span style="color:#960050;background-color:#1e0010">:</span> xwj
+</span></span><span style="display:flex;"><span>    BSSID                  <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">76</span><span style="color:#960050;background-color:#1e0010">:</span>f0<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">87</span><span style="color:#960050;background-color:#1e0010">:</span>de<span style="color:#960050;background-color:#1e0010">:</span>2a<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">85</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>@netsh wlan show interfaces | find <span style="color:#e6db74">&#34;car-test&#34;</span> &gt; nul &amp;&amp; (netsh wlan disconnect &amp; netsh wlan connect car ) || (netsh wlan disconnect &amp; netsh wlan connect car-test )<span style="color:#960050;background-color:#1e0010">↳</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@ping <span style="color:#ae81ff">127.1</span> &gt; nul &amp; netsh wlan show interfaces | find <span style="color:#e6db74">&#34;SSID&#34;</span> &amp; pause
+</span></span></code></pre></div><h2 id="vscode快捷打开插件">
   vscode快捷打开插件
   <a class="anchor" href="#vscode%e5%bf%ab%e6%8d%b7%e6%89%93%e5%bc%80%e6%8f%92%e4%bb%b6">#</a>
 </h2>
@@ -605,9 +602,9 @@ Flow Launcher 作为 JSON-RPC 客户端，负责向插件发送 JSON-RPC 请求�
 </span></span><span style="display:flex;"><span>D:\VSCode\bin\code C:\Users\xuwenjie\Desktop\WorkPlace\Algorithm\Algorithm
 </span></span><span style="display:flex;"><span>D:\VSCode\bin\code D:\Project\PythonProject\alicebot
 </span></span></code></pre></div><p>大致命令为vscode Algorithm</p>
-<h3 id="todo1">
-  ToDo1
-  <a class="anchor" href="#todo1">#</a>
+<h3 id="todo2">
+  ToDo2
+  <a class="anchor" href="#todo2">#</a>
 </h3>
 <p>多ide
 读取flow客户端配置
@@ -615,15 +612,6 @@ Flow Launcher 作为 JSON-RPC 客户端，负责向插件发送 JSON-RPC 请求�
 打包，无感使用
 测试
 query 带参数，搜索匹配缓存或者内存中的name</p>
-<h3 id="python学习">
-  python学习
-  <a class="anchor" href="#python%e5%ad%a6%e4%b9%a0">#</a>
-</h3>
-<h4 id="python文件路径">
-  python文件路径
-  <a class="anchor" href="#python%e6%96%87%e4%bb%b6%e8%b7%af%e5%be%84">#</a>
-</h4>
-<p><a href="https://blog.csdn.net/weixin_47542175/article/details/113237354">python文件地址（文件路径）怎么写_python地址怎么写-CSDN博客</a></p>
 <h3 id="项目编写">
   项目编写
   <a class="anchor" href="#%e9%a1%b9%e7%9b%ae%e7%bc%96%e5%86%99">#</a>
@@ -721,7 +709,7 @@ query 带参数，搜索匹配缓存或者内存中的name</p>
 </ol>
 <p>这些是该 JSON 文件中的主要字段和内容。</p>
 <blockquote>
-<p>艹，[&ldquo;lastKnownMenubarData&rdquo;]被从storage中删除了，尼玛
+<p>[&ldquo;lastKnownMenubarData&rdquo;]被从storage中删除了
 <a href="https://github.com/microsoft/vscode/issues/138491">https://github.com/microsoft/vscode/issues/138491</a></p>
 </blockquote>
 <p>vscode将不支持工作空间的长期存储，只支持临时存储，关机消失
@@ -785,13 +773,6 @@ query 带参数，搜索匹配缓存或者内存中的name</p>
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#wifi快捷登录插件">wifi快捷登录插件</a>
-      <ul>
-        <li><a href="#todo">ToDo</a></li>
-        <li><a href="#南邮校园网认证原理">南邮校园网认证原理</a></li>
-        <li><a href="#使用命令行连接wifi">使用命令行连接wifi</a></li>
-      </ul>
-    </li>
     <li><a href="#flow-launcher">Flow Launcher</a>
       <ul>
         <li><a href="#cicd">CI/CD</a></li>
@@ -800,10 +781,16 @@ query 带参数，搜索匹配缓存或者内存中的name</p>
         <li><a href="#读取配置settings">读取配置settings</a></li>
       </ul>
     </li>
-    <li><a href="#vscode快捷打开插件">vscode快捷打开插件</a>
+    <li><a href="#wifi快捷登录插件">wifi快捷登录插件</a>
       <ul>
         <li><a href="#todo1">ToDo1</a></li>
-        <li><a href="#python学习">python学习</a></li>
+        <li><a href="#南邮校园网认证原理">南邮校园网认证原理</a></li>
+        <li><a href="#使用命令行连接wifi">使用命令行连接wifi</a></li>
+      </ul>
+    </li>
+    <li><a href="#vscode快捷打开插件">vscode快捷打开插件</a>
+      <ul>
+        <li><a href="#todo2">ToDo2</a></li>
         <li><a href="#项目编写">项目编写</a></li>
       </ul>
     </li>
