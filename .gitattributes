@@ -1,0 +1,2 @@
+# 让 git 原样存储字节，避免 autocrlf 改写换行导致 SRI 校验失败
+* -text
